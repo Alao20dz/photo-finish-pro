@@ -11,7 +11,8 @@
  * 3. ‎#/league/:id‎          → صفحة رابطة في الموقع العمومي
  * 4. ‎#/compete‎             → وضع المنافسة (مدخل صريح من الموقع العمومي)
  * 5. ‎#/manage‎              → لوحة مدير الرابطة (Supabase Auth + MFA)
- * 6. ما عدى (بما فيه الفراغ) → الموقع العمومي (الواجهة الأمامية للمنصة)
+ * 6. ‎#/coach‎               → بوابة المدرب (العدائون + الشهادات + التقديم)
+ * 7. ما عدى (بما فيه الفراغ) → الموقع العمومي (الواجهة الأمامية للمنصة)
  *
  * ملاحظة: hash وsearch مستقلان في المتصفح، لذا يتعايش المسار ‎#/league/x‎
  * مع ‎?league=x‎ (قناة الهوية) دون تعارض.
@@ -19,7 +20,7 @@
 
 import { matchRoute, normalizePath, ROUTES } from './router';
 
-export type EntryScreen = 'admin' | 'compete' | 'public-home' | 'league' | 'manage';
+export type EntryScreen = 'admin' | 'compete' | 'public-home' | 'league' | 'manage' | 'coach';
 
 export interface EntryResolution {
   screen: EntryScreen;
@@ -67,6 +68,11 @@ export function resolveEntry(rawHash: string, rawSearch: string): EntryResolutio
   // 5) لوحة مدير الرابطة
   if (path === normalizePath(ROUTES.MANAGE)) {
     return { screen: 'manage', leagueId: null };
+  }
+
+  // 5-ب) بوابة المدرب
+  if (path === normalizePath(ROUTES.COACH)) {
+    return { screen: 'coach', leagueId: null };
   }
 
   // 6) الافتراضي: الموقع العمومي (يشمل ‎#/‎ والفراغ وأي مسار غير معروف)

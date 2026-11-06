@@ -89,6 +89,8 @@ export const ROUTES = {
   ADMIN: '/admin',
   /** لوحة مدير الرابطة (دخول Supabase Auth + MFA) */
   MANAGE: '/manage',
+  /** بوابة المدرب (تسجيل العدائين + الشهادات الطبية) */
+  COACH: '/coach',
 } as const;
 
 // ═══ الموجّه القابل للاشتراك ═══
