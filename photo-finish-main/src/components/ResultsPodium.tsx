@@ -1,6 +1,8 @@
-import React from 'react';
-import { Award, RotateCcw, Download, Eye, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, RotateCcw, Download, Eye, Sparkles, CloudUpload } from 'lucide-react';
 import { Runner, RaceSettings } from '../types/race';
+import { ResultsPublishModal } from './manage/ResultsPublishModal';
+import { isSupabaseConfigured } from '../services/supabaseClient';
 
 interface ResultsPodiumProps {
   runners: Runner[];
@@ -15,6 +17,8 @@ export const ResultsPodium: React.FC<ResultsPodiumProps> = ({
   onSharedResetRace,
   onViewPhotoFinish
 }) => {
+  // نافذة النشر السحابي (المرحلة 6) — المنتهون فقط (finishTime > 0)
+  const [publishOpen, setPublishOpen] = useState(false);
   // ترتيب العدائين تلقائياً حسب الوصول بالمللي ثانية (من الأول إلى الأخير)
   const sorted = [...runners]
     .filter(r => r.finishTime > 0)
@@ -123,6 +127,17 @@ export const ResultsPodium: React.FC<ResultsPodiumProps> = ({
         </button>
       </div>
 
+      {/* النشر السحابي الرسمي (المرحلة 6) — يظهر فقط مع تهيئة Supabase */}
+      {isSupabaseConfigured && sorted.length > 0 && (
+        <button
+          onClick={() => setPublishOpen(true)}
+          className="w-full p-3 rounded-2xl bg-gradient-to-r from-amber-600/90 to-orange-600/90 hover:from-amber-500 hover:to-orange-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-600/20 transition-all"
+        >
+          <CloudUpload className="w-4 h-4" />
+          <span>نشر النتائج الرسمية سحابياً ☁️</span>
+        </button>
+      )}
+
       {/* جدول النتائج التفصيلي مرتباً حسب الأروقة والوصول */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
         <div className="p-3 bg-slate-950/70 border-b border-slate-800 flex items-center justify-between text-xs font-bold text-slate-300">
@@ -183,6 +198,14 @@ export const ResultsPodium: React.FC<ResultsPodiumProps> = ({
         <RotateCcw className="w-4 h-4 text-cyan-400" />
         <span>🔄 بدء سباق جديد (إعادة تعيين مشتركة في كلا الهاتفين)</span>
       </button>
+
+      {/* نافذة النشر السحابي — تأخذ المنتهين فقط */}
+      <ResultsPublishModal
+        open={publishOpen}
+        onClose={() => setPublishOpen(false)}
+        finishers={sorted.map((r) => ({ bib: r.bib, name: r.name, finishTime: r.finishTime }))}
+        raceLabel={settings.distance}
+      />
     </div>
   );
 };

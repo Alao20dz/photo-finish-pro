@@ -58,8 +58,9 @@ def main():
     grand_failures = []
 
     suites = [
-        ('الاختبارات الرئيسية (12)', f'{BASE}/supabase/tests/rls_cloud_test.sql'),
-        ('اختبارات الزائر المجهول (3)', f'{BASE}/supabase/tests/rls_anon_test.sql'),
+        ('الاختبارات الرئيسية', f'{BASE}/supabase/tests/rls_cloud_test.sql'),
+        ('اختبارات الزائر المجهول', f'{BASE}/supabase/tests/rls_anon_test.sql'),
+        ('اختبارات النتائج الرسمية (المرحلة 6)', f'{BASE}/supabase/tests/results_cloud_test.sql'),
     ]
 
     for label, path in suites:

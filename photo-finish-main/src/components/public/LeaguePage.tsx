@@ -25,6 +25,13 @@ import {
   type PublicLeagueRow,
 } from '../../services/publicApi';
 import { loadAndApplyLeagueTheme, sanitizeLogoUrl } from '../../services/leagueTheme';
+import {
+  fetchLeaguePublishedResults,
+  groupResultsByCompetition,
+  type FetchResult as ResultsFetchResult,
+  type PublicResultRow,
+  type ResultStatus,
+} from '../../services/resultsCloudService';
 import { useI18n } from '../../i18n';
 import type { DictKey } from '../../i18n/dictionaries';
 
@@ -50,6 +57,10 @@ const STATUS_TONE: Record<CompetitionStatus, BadgeTone> = {
   results_published: 'primary',
 };
 
+const RES_STATUS_TONE: Record<ResultStatus, BadgeTone> = {
+  ok: 'success', dq: 'danger', dnf: 'warning', dns: 'neutral',
+};
+
 /** تنسيق التاريخ عبر formatDmy من publicApi (نقية وقابلة للاختبار) */
 
 interface LeagueState {
@@ -63,13 +74,16 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
   const { t, lang } = useI18n();
   const [leagueState, setLeagueState] = useState<LeagueState>({ loading: true, league: null, error: null, fromCache: false });
   const [compsState, setCompsState] = useState<FetchResult<PublicCompetitionRow> | null>(null);
+  const [resultsState, setResultsState] = useState<ResultsFetchResult<PublicResultRow> | null>(null);
 
   const load = useCallback(async () => {
     setLeagueState({ loading: true, league: null, error: null, fromCache: false });
     setCompsState(null);
-    const [leagueRes, compsRes] = await Promise.all([
+    setResultsState(null);
+    const [leagueRes, compsRes, resultsRes] = await Promise.all([
       fetchPublicLeagueById(leagueId),
       fetchPublicCompetitions(leagueId),
+      fetchLeaguePublishedResults(leagueId),
     ]);
     setLeagueState({
       loading: false,
@@ -78,6 +92,7 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
       fromCache: leagueRes.fromCache,
     });
     setCompsState(compsRes);
+    setResultsState(resultsRes);
   }, [leagueId]);
 
   useEffect(() => { void load(); }, [load]);
@@ -94,6 +109,11 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
 
   const compsError = compsState?.error ?? null;
   const compsLoading = compsState === null;
+
+  const groupedResults = useMemo(
+    () => groupResultsByCompetition(resultsState?.rows ?? []),
+    [resultsState]
+  );
 
   const name = leagueState.league ? pickTitle(leagueState.league, lang) : '';
   const logoUrl = sanitizeLogoUrl(leagueState.league?.logo_url ?? null);
@@ -262,6 +282,70 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
                 {renderSection('upcoming', 'comp_upcoming', 'primary')}
                 {renderSection('finished', 'comp_finished', 'neutral')}
               </>
+            )}
+
+            {/* النتائج الرسمية المنشورة (View عمومية — نتائج results_published حصراً) */}
+            {resultsState && resultsState.rows.length > 0 && (
+              <section className="mt-10">
+                <div className="flex items-center gap-2 mb-4 flex-wrap">
+                  <h3 className="text-base sm:text-lg font-black">🏆 {t('site_results_title')}</h3>
+                  <Badge tone="primary">{groupedResults.length}</Badge>
+                  {resultsState.fromCache && <Badge tone="warning">📴 {t('site_offline_cached')}</Badge>}
+                </div>
+                <div className="space-y-5">
+                  {groupedResults.map((bucket) => (
+                    <Card key={bucket.competition.id}>
+                      <CardBody className="space-y-4">
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <div className="min-w-0">
+                            <h4 className="font-black text-sm sm:text-base">
+                              {lang === 'fr' && bucket.competition.titleFr?.trim()
+                                ? bucket.competition.titleFr
+                                : bucket.competition.titleAr}
+                            </h4>
+                            <p className="text-[11px] text-slate-500 mt-0.5">
+                              {bucket.competition.venue ? `📍 ${bucket.competition.venue} — ` : ''}
+                              {formatDmy(bucket.competition.endDate)}
+                            </p>
+                          </div>
+                        </div>
+
+                        {bucket.events.map((ev) => (
+                          <div key={ev.eventId} className="rounded-xl border border-slate-800 overflow-hidden">
+                            <div className="px-3 py-2 bg-slate-950/70 border-b border-slate-800 text-xs font-black flex items-center gap-2">
+                              <span className="text-[var(--pf-primary,#f59e0b)]">🏁 {ev.discipline}</span>
+                              <span className="text-slate-500">{ev.gender === 'M' ? '♂' : '♀'} {ev.category}</span>
+                            </div>
+                            <div className="divide-y divide-slate-800/60">
+                              {ev.rows.map((r) => (
+                                <div key={r.id} className="px-3 py-2 flex items-center justify-between gap-2 text-xs">
+                                  <span className="flex items-center gap-2 min-w-0">
+                                    <span className="w-6 text-center font-black text-amber-400 shrink-0">
+                                      {r.position === 1 ? '🥇' : r.position === 2 ? '🥈' : r.position === 3 ? '🥉' : (r.position ?? '—')}
+                                    </span>
+                                    <span className="truncate font-bold text-slate-100">{r.athlete_name ?? '—'}</span>
+                                    {r.club_code && <span className="text-slate-500 font-mono shrink-0">{r.club_code}</span>}
+                                  </span>
+                                  <span className="flex items-center gap-2 shrink-0">
+                                    <span dir="ltr" className="font-mono font-black text-cyan-300">{r.mark_text ?? '—'}</span>
+                                    {r.status !== 'ok' && (
+                                      <Badge tone={RES_STATUS_TONE[r.status]}>{t(`res_status_${r.status}` as DictKey)}</Badge>
+                                    )}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {resultsState && resultsState.rows.length === 0 && groupedResults.length === 0 && compsState && compsState.rows.length > 0 && (
+              <p className="mt-8 text-center text-xs text-slate-600">{t('site_results_empty')}</p>
             )}
           </>
         )}
