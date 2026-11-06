@@ -132,7 +132,7 @@ select 'T5_coach_own_club_athletes_only',
 
 -- ═══ T6: مدير المنصة يرى كل الرابطات ═══
 select set_config('request.jwt.claims',
-  json_build_object('sub','11111111-1111-1111-1111-111111111111','role','authenticated','aal','al2')::text, true);
+  json_build_object('sub','11111111-1111-1111-1111-111111111111','role','authenticated','aal','aal2')::text, true);
 insert into pg_temp.test_results
 select 'T6_platform_admin_sees_all_leagues',
        (select count(*) from public.leagues) = 3,
@@ -154,7 +154,7 @@ end $$;
 
 -- ═══ T8: مدير الرابطة (بجلسة AAL2) يبتّ في التسجيل ═══
 select set_config('request.jwt.claims',
-  json_build_object('sub','22222222-2222-2222-2222-222222222222','role','authenticated','aal','al2')::text, true);
+  json_build_object('sub','22222222-2222-2222-2222-222222222222','role','authenticated','aal','aal2')::text, true);
 do $$
 begin
   update public.registrations set status = 'approved', review_note = 'معتمد'
@@ -202,7 +202,7 @@ begin
   end if;
 end $$;
 select set_config('request.jwt.claims',
-  json_build_object('sub','22222222-2222-2222-2222-222222222222','role','authenticated','aal','al2')::text, true);
+  json_build_object('sub','22222222-2222-2222-2222-222222222222','role','authenticated','aal','aal2')::text, true);
 do $$
 begin
   update public.competitions set venue = 'مقبول-مع-MFA'
@@ -216,7 +216,7 @@ end $$;
 
 -- ═══ T12: سجل التدقيق حصراً لمديري المنصة ═══
 select set_config('request.jwt.claims',
-  json_build_object('sub','11111111-1111-1111-1111-111111111111','role','authenticated','aal','al2')::text, true);
+  json_build_object('sub','11111111-1111-1111-1111-111111111111','role','authenticated','aal','aal2')::text, true);
 insert into pg_temp.test_results
 select 'T12_audit_log_admin_only',
        (select count(*) from public.audit_log) >= 1,
