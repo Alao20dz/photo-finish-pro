@@ -1,0 +1,63 @@
+# ==============================================================================
+# نسخ احتياطي مجدول — أسبوعياً (Weekly scheduled backup)
+# ==============================================================================
+# خطة Supabase المجانية لا تتضمن نسخاً احتياطية مضمونة — هذا الـ workflow يملأ
+# الفجوة صفر تكلفة: كل أحد 03:00 UTC يُفرَّغ المخطط + البيانات + الأدوار
+# ويُرفع كملف artifact لمدة 60 يوماً (يتجاوز فترة الخمول المتوقع للخطة المجانية).
+#
+# التفعيل (مرة واحدة):
+#   1. إعدادات المستودع → Secrets and variables → Actions → New repository secret:
+#        - SUPABASE_ACCESS_TOKEN  (من supabase.com/dashboard/account/tokens)
+#        - SUPABASE_PROJECT_REF   (مثال: qavifeuyhqyldbjwoqdn)
+#   2. لا شيء آخر — العملية تتخطى نفسها بأمان إذا غابت الأسرار.
+#
+# للنسخ الاحتياطي اليدوي أو المحلي: انظر supabase/scripts/backup.sh و docs/OPERATIONS.md
+
+name: backup
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # كل أحد 03:00 UTC (04:00 / 05:00 بتوقيت الجزائر حسب التوقيت الصيفي)
+  workflow_dispatch: {} # تشغيل يدوي عند الطلب
+
+permissions:
+  contents: read
+
+jobs:
+  dump:
+    name: supabase db dump → artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard — تخطٍّ آمن إذا لم تُضبط الأسرار بعد
+        id: guard
+        run: |
+          if [ -z "${SUPABASE_ACCESS_TOKEN:-}" ] || [ -z "${SUPABASE_PROJECT_REF:-}" ]; then
+            echo "::notice::Secrets غير مضبوطة — تُخطى هذه العملية (اضبط SUPABASE_ACCESS_TOKEN و SUPABASE_PROJECT_REF للتفعيل)."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.guard.outputs.skip == 'false'
+        with:
+          node-version: 22
+
+      - name: Dump (roles + schema + data)
+        if: steps.guard.outputs.skip == 'false'
+        run: bash supabase/scripts/backup.sh --all
+
+      - name: Upload artifact (60 days)
+        if: steps.guard.outputs.skip == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-backup-${{ github.run_id }}
+          path: backups/
+          retention-days: 60
+          if-no-files-found: error

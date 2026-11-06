@@ -1,0 +1,56 @@
+# ==============================================================================
+# CI — بوابة الجودة (Quality Gate)
+# ==============================================================================
+# تعمل على كل دفعة إلى main وعلى كل طلب دمج.
+# نفس الخطوات التي يشغّلها المهندس محلياً قبل كل تسليم مرحلي:
+#   typecheck → tests (تتضمن مسح الأسرار على الحزمة المبنية) → build
+# أي فشل يمنع الدمج ويُظهر شارة أحمر في README.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: typecheck · tests · build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: photo-finish-main
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: photo-finish-main/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck (tsc --noEmit)
+        run: npm run typecheck
+
+      - name: Tests (vitest — يشمل مسح الأسرار)
+        run: npm test
+
+      - name: Build (vite + sitemap)
+        run: npm run build
+
+      - name: Upload dist as artifact (15 days)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: photo-finish-main/dist
+          retention-days: 15

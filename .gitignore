@@ -71,3 +71,6 @@ supabase/.branches/
 
 # allow the example file to be committed
 !.env.example
+
+# Supabase backups (local dumps — never commit)
+backups/
