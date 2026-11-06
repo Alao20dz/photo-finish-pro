@@ -231,7 +231,7 @@ export const CheckpointJudgeView: React.FC<CheckpointJudgeViewProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none" dir="rtl">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
       {/* الشريط العلوي لنقطة المراقبة */}
       <header className="bg-slate-900 border-b border-slate-800 p-3 flex items-center justify-between sticky top-0 z-30 shadow-md">
         <div className="flex items-center gap-3">
@@ -395,7 +395,7 @@ export const CheckpointJudgeView: React.FC<CheckpointJudgeViewProps> = ({
             </span>
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+          <div className="flex-1 overflow-y-auto space-y-2 ps-1">
             {recentPassages.length === 0 ? (
               <div className="h-40 flex flex-col items-center justify-center text-slate-500 text-xs text-center p-4">
                 <Clock className="w-8 h-8 mb-2 opacity-30" />

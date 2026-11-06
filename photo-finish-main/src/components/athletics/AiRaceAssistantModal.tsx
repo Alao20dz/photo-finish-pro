@@ -142,7 +142,7 @@ export const AiRaceAssistantModal: React.FC<AiRaceAssistantModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto font-sans" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto font-sans">
       <div className="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-slate-100">
         
         {/* شريط الإشعار */}
@@ -438,7 +438,7 @@ export const AiRaceAssistantModal: React.FC<AiRaceAssistantModalProps> = ({
                             </div>
                           </div>
 
-                          <div className="text-left">
+                          <div className="text-end">
                             <span className="text-[11px] text-slate-400 block">الفارق عن الملاحق المباشر</span>
                             <span className="text-sm font-bold text-emerald-400">
                               +{lc.gapSeconds.toFixed(1)} ثانية

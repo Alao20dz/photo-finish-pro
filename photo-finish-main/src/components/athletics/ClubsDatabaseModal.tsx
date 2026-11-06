@@ -158,7 +158,7 @@ export const ClubsDatabaseModal: React.FC<ClubsDatabaseModalProps> = ({ isOpen, 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 w-full max-w-5xl rounded-2xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
@@ -198,13 +198,13 @@ export const ClubsDatabaseModal: React.FC<ClubsDatabaseModalProps> = ({ isOpen, 
         {/* Toolbar */}
         <div className="p-4 bg-slate-900/60 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
           <div className="relative flex-1 min-w-[240px]">
-            <Search className="w-4 h-4 absolute right-3 top-3 text-slate-400" />
+            <Search className="w-4 h-4 absolute start-3 top-3 text-slate-400" />
             <input
               type="text"
               placeholder="ابحث برمز النادي، الاسم، أو الولاية..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full pl-3 pr-10 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+              className="w-full pe-3 ps-10 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
@@ -308,7 +308,7 @@ export const ClubsDatabaseModal: React.FC<ClubsDatabaseModalProps> = ({ isOpen, 
                           <span>🥉</span>
                           <span>{club.medalsTally.bronze}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-emerald-400 font-extrabold pr-2 border-r border-slate-700" title="إجمالي الميداليات">
+                        <div className="flex items-center gap-1 text-emerald-400 font-extrabold ps-2 border-s border-slate-700" title="إجمالي الميداليات">
                           <Trophy className="w-3.5 h-3.5 text-emerald-400" />
                           <span>{club.medalsTally.total}</span>
                         </div>
@@ -356,7 +356,7 @@ export const ClubsDatabaseModal: React.FC<ClubsDatabaseModalProps> = ({ isOpen, 
       {/* ═══════════════════════════════════════════════════ */}
       {isFormOpen && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl p-6 text-right max-h-[95vh] overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl p-6 text-start max-h-[95vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
               <div className="flex items-center gap-2 font-bold text-lg text-white">
                 <Building2 className="w-5 h-5 text-emerald-400" />

@@ -113,7 +113,7 @@ export const ClubStandingsModal: React.FC<ClubStandingsModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-5xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
         
         {/* شريط العنوان */}
@@ -247,7 +247,7 @@ export const ClubStandingsModal: React.FC<ClubStandingsModalProps> = ({
 
               {teamScores.length > 0 ? (
                 <div className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                  <table className="w-full text-right text-xs">
+                  <table className="w-full text-start text-xs">
                     <thead className="bg-slate-900 text-slate-400 text-[11px] border-b border-slate-800">
                       <tr>
                         <th className="p-2.5">الرتبة</th>
@@ -330,7 +330,7 @@ export const ClubStandingsModal: React.FC<ClubStandingsModalProps> = ({
 
               {medalTallies.length > 0 ? (
                 <div className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                  <table className="w-full text-right text-xs">
+                  <table className="w-full text-start text-xs">
                     <thead className="bg-slate-900 text-slate-400 text-[11px] border-b border-slate-800">
                       <tr>
                         <th className="p-2.5">الرتبة</th>

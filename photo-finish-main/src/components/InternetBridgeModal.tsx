@@ -120,7 +120,7 @@ export const InternetBridgeModal: React.FC<InternetBridgeModalProps> = ({
   const isChambreOnline = roomStatus?.hasChambre || athleticsNetwork.hasChambrePhone || role === 'chambre_dappel';
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700/80 rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl animate-scaleUp my-auto">
         {/* رأس النافذة */}
         <div className="bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 p-4 border-b border-slate-800 flex items-center justify-between">
@@ -657,7 +657,7 @@ export const InternetBridgeModal: React.FC<InternetBridgeModalProps> = ({
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span>كيف تضمن ربطاً فورياً وناجحاً 100% بين الهواتف الثلاثة:</span>
             </div>
-            <ul className="list-disc list-inside space-y-1 text-[10px] text-slate-400 pr-1 leading-relaxed">
+            <ul className="list-disc list-inside space-y-1 text-[10px] text-slate-400 ps-1 leading-relaxed">
               <li><strong>على شبكة Wi-Fi أو نقطة اتصال الهاتف (Hotspot):</strong> يعمل خادم الترحيل المحلي بزمن استجابة أقل من 3 مللي ثانية وبث مباشر لجميع الأجهزة دون استهلاك إنترنت.</li>
               <li><strong>عبر بيانات الهاتف (4G / 5G):</strong> يعمل جسر WebRTC السحابي المدعوم بخوادم STUN/TURN الدولية للربط بين الهواتف على مسافات 100م إلى 1500م.</li>
               <li>اضغط <strong>"نسخ رابط هاتف 1"</strong> أو <strong>"نسخ رابط هاتف 2"</strong> أو <strong>"نسخ رابط هاتف 3"</strong> وأرسله للهواتف الأخرى لتفتح فوراً على الدور الصحيح بنفس رمز الغرفة!</li>

@@ -266,7 +266,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('start')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-950 border border-emerald-500/40 hover:border-emerald-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-950 border border-emerald-500/40 hover:border-emerald-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -303,7 +303,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('finish')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-cyan-950/40 to-slate-950 border border-cyan-500/40 hover:border-cyan-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-cyan-950/40 to-slate-950 border border-cyan-500/40 hover:border-cyan-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -340,7 +340,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('judge')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-amber-950/40 to-slate-950 border border-amber-500/40 hover:border-amber-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-amber-950/40 to-slate-950 border border-amber-500/40 hover:border-amber-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -377,7 +377,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('chambre_dappel')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-purple-950/40 to-slate-950 border border-purple-500/40 hover:border-purple-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-purple-950/40 to-slate-950 border border-purple-500/40 hover:border-purple-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -414,7 +414,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('checkpoint_judge')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-950 border border-emerald-500/40 hover:border-emerald-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-950 border border-emerald-500/40 hover:border-emerald-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -453,7 +453,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
             <button
               type="button"
               onClick={() => onSelectRole('athletics_manager')}
-              className="group relative overflow-hidden text-right p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-indigo-500/40 hover:border-indigo-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
+              className="group relative overflow-hidden text-start p-4 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-indigo-500/40 hover:border-indigo-400 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">

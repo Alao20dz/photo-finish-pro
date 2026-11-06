@@ -337,7 +337,7 @@ export const JudgePhoneView: React.FC<JudgePhoneViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-2 sm:p-5 space-y-3 sm:space-y-4 text-slate-100" dir="rtl">
+    <div className="w-full max-w-4xl mx-auto p-2 sm:p-5 space-y-3 sm:space-y-4 text-slate-100">
       {/* رأس شاشة الحكم العام: السلاسل / القوائم والمؤقت الرقمي */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-900/50 rounded-2xl sm:rounded-3xl p-3 sm:p-6 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4">
@@ -418,7 +418,7 @@ export const JudgePhoneView: React.FC<JudgePhoneViewProps> = ({
                 </button>
 
                 {/* أزرار الترتيب والحذف لكل قائمة */}
-                <div className="flex items-center gap-0.5 mr-1 border-r border-slate-700/50 pr-1">
+                <div className="flex items-center gap-0.5 ms-1 border-s border-slate-700/50 ps-1">
                   {onReorderHeats && (
                     <>
                       <button
@@ -771,7 +771,7 @@ export const JudgePhoneView: React.FC<JudgePhoneViewProps> = ({
               <span className="bg-slate-800 px-2 py-0.5 rounded text-slate-300 font-bold">{runners.length} أروقة</span>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead className="bg-slate-950/80 text-slate-400 border-b border-slate-800 font-bold">
                   <tr>
                     <th className="p-2.5 text-center">الترتيب</th>
@@ -1043,7 +1043,7 @@ export const JudgePhoneView: React.FC<JudgePhoneViewProps> = ({
                 </div>
               </div>
 
-              <div className="text-left font-mono text-xs space-y-0.5 text-slate-700">
+              <div className="text-end font-mono text-xs space-y-0.5 text-slate-700">
                 <div><strong>IAAF Rule:</strong> 164.2 (Photo Finish)</div>
                 <div><strong>التاريخ:</strong> {new Date().toLocaleDateString('ar-DZ')}</div>
                 <div><strong>التوقيت:</strong> {new Date().toLocaleTimeString('ar-DZ', { hour: '2-digit', minute: '2-digit' })}</div>
@@ -1126,7 +1126,7 @@ export const JudgePhoneView: React.FC<JudgePhoneViewProps> = ({
 
             {/* جدول الترتيب والنتائج الرسمي */}
             <div>
-              <table className="w-full text-right text-xs border border-slate-300 rounded-xl overflow-hidden">
+              <table className="w-full text-start text-xs border border-slate-300 rounded-xl overflow-hidden">
                 <thead className="bg-slate-900 text-white font-bold">
                   <tr>
                     <th className="p-2 text-center">الترتيب</th>

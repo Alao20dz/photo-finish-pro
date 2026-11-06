@@ -221,7 +221,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 w-full max-w-6xl rounded-2xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
@@ -261,13 +261,13 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
         {/* Toolbar: Search & Filters */}
         <div className="p-4 bg-slate-900/60 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
           <div className="relative flex-1 min-w-[240px]">
-            <Search className="w-4 h-4 absolute right-3 top-3 text-slate-400" />
+            <Search className="w-4 h-4 absolute start-3 top-3 text-slate-400" />
             <input
               type="text"
               placeholder="ابحث بالاسم، رقم الصدرية، رقم الرخصة، أو النادي..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full pl-3 pr-10 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full pe-3 ps-10 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
 
@@ -311,7 +311,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
             </div>
           ) : (
             <div className="overflow-x-auto rounded-xl border border-slate-800">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead className="bg-slate-800/90 text-slate-300 font-semibold uppercase tracking-wider border-b border-slate-700">
                   <tr>
                     <th className="py-3 px-3">الصدرية</th>
@@ -425,7 +425,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
       {/* ═══════════════════════════════════════════════════ */}
       {isFormOpen && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-2xl rounded-2xl shadow-2xl p-6 text-right max-h-[95vh] overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-2xl rounded-2xl shadow-2xl p-6 text-start max-h-[95vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
               <div className="flex items-center gap-2 font-bold text-lg text-white">
                 <Users className="w-5 h-5 text-blue-400" />
@@ -670,7 +670,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
       {/* ═══════════════════════════════════════════════════ */}
       {viewingRecordsAthlete && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl p-6 text-right max-h-[90vh] overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl p-6 text-start max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
               <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-amber-400" />
@@ -703,7 +703,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
                         <div className="font-bold text-white">{r.eventName} ({r.eventCode})</div>
                         <div className="text-[10px] text-slate-400">{r.date} • {r.venue || 'غير محدد'}</div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-start">
                         <span className="font-mono font-bold text-sm text-amber-300">{r.recordValue}</span>
                         {r.wind && <div className="text-[10px] text-slate-400 font-mono">رياح: {r.wind}</div>}
                       </div>
@@ -733,7 +733,7 @@ export const AthletesDatabaseModal: React.FC<AthletesDatabaseModalProps> = ({ is
                         <div className="font-bold text-white">{r.eventName} ({r.eventCode})</div>
                         <div className="text-[10px] text-slate-400">{r.date} • {r.venue || 'غير محدد'}</div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-start">
                         <span className="font-mono font-bold text-sm text-blue-300">{r.recordValue}</span>
                       </div>
                     </div>

@@ -147,7 +147,7 @@ export const PassageMonitoringDashboard: React.FC<PassageMonitoringDashboardProp
   const pendingCorrectionsCount = corrections.filter(c => c.status === 'pending').length;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none" dir="rtl">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
       {/* شريط التحكم العلوي للحكم العام */}
       <header className="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-30 shadow-md">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
@@ -292,7 +292,7 @@ export const PassageMonitoringDashboard: React.FC<PassageMonitoringDashboardProp
         {activeTab === 'standings' && (
           <div className="bg-slate-900/90 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
-              <table className="w-full text-right border-collapse text-xs">
+              <table className="w-full text-start border-collapse text-xs">
                 <thead>
                   <tr className="bg-slate-950/80 text-slate-400 border-b border-slate-800">
                     <th className="p-3.5 font-bold">الرتبة</th>
@@ -396,7 +396,7 @@ export const PassageMonitoringDashboard: React.FC<PassageMonitoringDashboardProp
               <table className="w-full text-center border-collapse text-xs">
                 <thead>
                   <tr className="bg-slate-950 text-slate-400 border-b border-slate-800">
-                    <th className="p-3 text-right">الصدرية</th>
+                    <th className="p-3 text-start">الصدرية</th>
                     {competition.checkpoints.map(cp => (
                       <th key={cp.id} className="p-3 font-mono font-bold text-emerald-400">
                         {cp.code}
@@ -408,7 +408,7 @@ export const PassageMonitoringDashboard: React.FC<PassageMonitoringDashboardProp
                 <tbody className="divide-y divide-slate-800/60">
                   {standings.map(runner => (
                     <tr key={runner.bibNumber} className="hover:bg-slate-800/40">
-                      <td className="p-3 text-right font-mono font-bold text-slate-200">
+                      <td className="p-3 text-start font-mono font-bold text-slate-200">
                         #{runner.bibNumber} {runner.athleteName}
                       </td>
                       {competition.checkpoints.map(cp => {

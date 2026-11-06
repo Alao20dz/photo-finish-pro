@@ -383,7 +383,7 @@ export const CourseDesignerModal: React.FC<CourseDesignerModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-5xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
         
         {/* شريط العنوان العلوي */}
@@ -548,7 +548,7 @@ export const CourseDesignerModal: React.FC<CourseDesignerModalProps> = ({
             <div className="space-y-4">
               {/* لوحة رسم المسار بالـ SVG المستقل محلياً */}
               <div className="bg-slate-950 rounded-2xl border border-slate-800 p-2 overflow-hidden relative shadow-inner">
-                <div className="absolute top-3 right-3 z-10 bg-slate-900/80 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-800 text-[10px] text-slate-300 flex items-center gap-2">
+                <div className="absolute top-3 start-3 z-10 bg-slate-900/80 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-800 text-[10px] text-slate-300 flex items-center gap-2">
                   <span className="flex items-center gap-1 text-emerald-400">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> البداية
                   </span>
@@ -712,7 +712,7 @@ export const CourseDesignerModal: React.FC<CourseDesignerModalProps> = ({
                 <div className="space-y-2">
                   <h3 className="text-xs font-bold text-slate-300">قائمة النقاط الإحداثية للمسار ({activeCourse.waypoints.length})</h3>
                   <div className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                    <table className="w-full text-right text-xs">
+                    <table className="w-full text-start text-xs">
                       <thead className="bg-slate-900 text-slate-400 text-[11px] border-b border-slate-800">
                         <tr>
                           <th className="p-2.5">#</th>

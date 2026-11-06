@@ -215,7 +215,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-5xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
         
         {/* شريط العنوان */}
@@ -392,13 +392,13 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
                 <div className="relative flex-1 max-w-sm">
-                  <Search className="w-4 h-4 text-slate-400 absolute right-3 top-2.5" />
+                  <Search className="w-4 h-4 text-slate-400 absolute start-3 top-2.5" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                     placeholder="بحث برقم الصدر أو اسم العداء أو النادي..."
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl pr-9 pl-3 py-1.5 text-xs text-slate-100"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl ps-9 pe-3 py-1.5 text-xs text-slate-100"
                   />
                 </div>
 
@@ -408,7 +408,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
               </div>
 
               <div className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                <table className="w-full text-right text-xs">
+                <table className="w-full text-start text-xs">
                   <thead className="bg-slate-900 text-slate-400 text-[11px] border-b border-slate-800">
                     <tr>
                       <th className="p-2.5">الرتبة</th>
@@ -571,7 +571,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
                         <div className="text-[11px] text-slate-400">الجهاز: {t.deviceId} • الدور: {t.role}</div>
                       </div>
 
-                      <div className="flex items-center gap-3 text-right">
+                      <div className="flex items-center gap-3 text-start">
                         <div>
                           <div className="flex items-center gap-1 text-[11px] text-emerald-400">
                             <Battery className="w-3.5 h-3.5" />
@@ -601,7 +601,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
             <div className="space-y-3">
               {auditLog.length > 0 ? (
                 <div className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                  <table className="w-full text-right text-xs">
+                  <table className="w-full text-start text-xs">
                     <thead className="bg-slate-900 text-slate-400 text-[11px] border-b border-slate-800">
                       <tr>
                         <th className="p-2.5">الإجراء</th>
@@ -640,7 +640,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
 
         {/* حوار فك القفل الإداري */}
         {showUnlockModal && (
-          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4" dir="rtl">
+          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 max-w-md w-full space-y-4 shadow-2xl">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 className="font-bold text-sm text-amber-300 flex items-center gap-2">
@@ -692,7 +692,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
 
         {/* حوار تسجيل طعن رسمي جديد */}
         {showNewProtestModal && (
-          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4" dir="rtl">
+          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 max-w-md w-full space-y-4 shadow-2xl">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 className="font-bold text-sm text-purple-300 flex items-center gap-2">
@@ -788,7 +788,7 @@ export const ChiefJudgeDashboardModal: React.FC<ChiefJudgeDashboardModalProps> =
 
         {/* حوار البت في الطعن من قبل الحكم العام */}
         {selectedProtest && (
-          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4" dir="rtl">
+          <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/80 p-4">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 max-w-md w-full space-y-4 shadow-2xl">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 className="font-bold text-sm text-white">قرار لجنة التحكيم العليا</h3>

@@ -14,6 +14,7 @@ import { SubscriptionModal } from './components/SubscriptionModal';
 import { LicenseTransferModal } from './components/LicenseTransferModal';
 import { Runner, PhoneRole, RaceStatus, RaceSettings, NetworkPeerMessage, Heat, LicensePoolInfo } from './types/race';
 import { licenseManager } from './services/licenseManager';
+import { loadAndApplyLeagueTheme } from './services/leagueTheme';
 import { pricingService } from './services/pricingService';
 import { athleticsAudio } from './services/audioService';
 import { athleticsNetwork } from './services/networkService';
@@ -963,7 +964,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black" dir="rtl">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black">
       {/* راية وتنبيه استلام جرس لفت الانتباه ورنين صفارة الشرطة من الهاتف الآخر */}
       {isReceivingBellAlert && (
         <div className="fixed top-14 inset-x-3 z-50 p-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-600 text-white border-2 border-yellow-300 shadow-2xl shadow-rose-600/50 flex items-center justify-between animate-pulse">
@@ -1279,6 +1280,17 @@ const AppRoot: React.FC = () => {
   const [adminMode] = useState<boolean>(() => {
     try { return new URLSearchParams(window.location.search).has('admin'); } catch { return false; }
   });
+
+  // ═══ إيصال قناة هوية الرابطة (المرحلة 2): ?league=<id> ═══
+  // يجلب الهوية من Supabase ويطبّقها كمتغيرات CSS — آمن أوفلاين
+  // (يفشل بصمت ويبقي الهوية المحفوظة محلياً).
+  useEffect(() => {
+    try {
+      const leagueId = new URLSearchParams(window.location.search).get('league');
+      if (leagueId) void loadAndApplyLeagueTheme(leagueId);
+    } catch { /* بيئة بلا نافذة */ }
+  }, []);
+
   return adminMode ? <AdminGate /> : <App />;
 };
 

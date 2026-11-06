@@ -106,7 +106,7 @@ export const LicenseTransferModal: React.FC<LicenseTransferModalProps> = ({
     : null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* رأس النافذة */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-950/50">
@@ -176,7 +176,7 @@ export const LicenseTransferModal: React.FC<LicenseTransferModalProps> = ({
                   <p className="text-[10px] text-slate-400">معرّف هذا الهاتف الحالي (المصدر):</p>
                   <p className="text-sm font-mono font-bold text-cyan-400">{myDeviceId}</p>
                 </div>
-                <div className="text-left">
+                <div className="text-end">
                   <p className="text-[10px] text-slate-400">حالة الاشتراك الحالي:</p>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                     activeLicense 

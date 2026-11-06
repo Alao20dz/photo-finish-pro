@@ -122,7 +122,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 w-full max-w-6xl rounded-2xl shadow-2xl flex flex-col max-h-[94vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
@@ -194,7 +194,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
                   <span className="text-sm">
                     {idx === 0 ? '🥇' : idx === 1 ? '🥈' : '🥉'}
                   </span>
-                  <div className="text-right">
+                  <div className="text-start">
                     <span className="font-bold text-white text-[11px] block">{ath.athleteName}</span>
                     <span className="font-mono font-bold text-amber-300 text-[10px]">
                       {ath.bestValidMeasurement > 0 ? `${ath.bestValidMeasurement.toFixed(2)}m` : 'NM'}
@@ -212,7 +212,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
             <div className="text-center py-16 text-slate-400">لا توجد مسابقات ميدانية مجدولة.</div>
           ) : (
             <div className="overflow-x-auto rounded-xl border border-slate-800">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead className="bg-slate-800/90 text-slate-300 font-semibold border-b border-slate-700">
                   <tr>
                     <th className="py-2.5 px-3 text-center">الرتبة</th>
@@ -221,11 +221,11 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
                     <th className="py-2.5 px-3">الاسم واللقب</th>
                     <th className="py-2.5 px-3">النادي</th>
                     {Array.from({ length: activeComp.totalAttemptsAllowed }, (_, i) => (
-                      <th key={i + 1} className="py-2.5 px-2 text-center border-r border-slate-700/60 font-mono">
+                      <th key={i + 1} className="py-2.5 px-2 text-center border-s border-slate-700/60 font-mono">
                         المحاولة {i + 1}
                       </th>
                     ))}
-                    <th className="py-2.5 px-3 text-center bg-amber-950/20 text-amber-300 font-bold border-r border-slate-700">
+                    <th className="py-2.5 px-3 text-center bg-amber-950/20 text-amber-300 font-bold border-s border-slate-700">
                       الأفضل (Best)
                     </th>
                     <th className="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">
@@ -283,7 +283,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
                           <td 
                             key={attemptNum} 
                             onClick={() => handleOpenAttemptModal(ath, attemptNum)}
-                            className={`py-2 px-1 text-center border-r border-slate-800/80 cursor-pointer transition hover:bg-slate-700/60 ${
+                            className={`py-2 px-1 text-center border-s border-slate-800/80 cursor-pointer transition hover:bg-slate-700/60 ${
                               isBest ? 'bg-amber-500/10' : ''
                             }`}
                             title="انقر لتسجيل أو تعديل المحاولة"
@@ -315,7 +315,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
                       })}
 
                       {/* أفضل نتيجة Best */}
-                      <td className="py-2.5 px-3 text-center bg-amber-950/20 border-r border-slate-700">
+                      <td className="py-2.5 px-3 text-center bg-amber-950/20 border-s border-slate-700">
                         <span className="font-mono font-black text-amber-300 text-sm">
                           {ath.bestValidMeasurement > 0 ? `${ath.bestValidMeasurement.toFixed(2)}m` : 'NM'}
                         </span>
@@ -352,7 +352,7 @@ export const FieldEventScorepadModal: React.FC<FieldEventScorepadModalProps> = (
       {/* ═══════════════════════════════════════════════════ */}
       {editingAttempt && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-sm rounded-2xl shadow-2xl p-6 text-right">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-sm rounded-2xl shadow-2xl p-6 text-start">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
               <div>
                 <h3 className="font-bold text-white text-base">

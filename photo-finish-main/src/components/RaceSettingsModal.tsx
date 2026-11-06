@@ -153,7 +153,7 @@ export const RaceSettingsModal: React.FC<RaceSettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 text-white" dir="rtl">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 text-white">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
         {/* رأس النافذة */}
         <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
@@ -398,7 +398,7 @@ export const RaceSettingsModal: React.FC<RaceSettingsModalProps> = ({
               <button
                 type="button"
                 onClick={() => setCurrentSettings(prev => ({ ...prev, starterMode: 'auto_random' }))}
-                className={`p-2.5 rounded-xl border text-right transition-all ${
+                className={`p-2.5 rounded-xl border text-start transition-all ${
                   currentSettings.starterMode === 'auto_random'
                     ? 'bg-cyan-500/15 border-cyan-400 text-white'
                     : 'bg-slate-900 border-slate-800 text-slate-400'
@@ -411,7 +411,7 @@ export const RaceSettingsModal: React.FC<RaceSettingsModalProps> = ({
               <button
                 type="button"
                 onClick={() => setCurrentSettings(prev => ({ ...prev, starterMode: 'manual' }))}
-                className={`p-2.5 rounded-xl border text-right transition-all ${
+                className={`p-2.5 rounded-xl border text-start transition-all ${
                   currentSettings.starterMode === 'manual'
                     ? 'bg-cyan-500/15 border-cyan-400 text-white'
                     : 'bg-slate-900 border-slate-800 text-slate-400'
@@ -645,7 +645,7 @@ export const RaceSettingsModal: React.FC<RaceSettingsModalProps> = ({
                     key={opt.id}
                     type="button"
                     onClick={() => setCurrentSettings(prev => ({ ...prev, cameraPlacement: opt.id }))}
-                    className={`text-right p-3 rounded-xl border-2 transition-all cursor-pointer ${
+                    className={`text-start p-3 rounded-xl border-2 transition-all cursor-pointer ${
                       selected ? 'bg-slate-900' : 'bg-slate-950/70 border-slate-800 hover:border-slate-600'
                     }`}
                     style={selected ? { borderColor: opt.accent } : undefined}
@@ -703,7 +703,7 @@ export const RaceSettingsModal: React.FC<RaceSettingsModalProps> = ({
               <span className="text-[10px] text-slate-500">تُحفظ تلقائياً في السجلات</span>
             </div>
 
-            <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+            <div className="space-y-1.5 max-h-48 overflow-y-auto ps-1">
               {currentRunners.map((runner, idx) => (
                 <div
                   key={runner.id}

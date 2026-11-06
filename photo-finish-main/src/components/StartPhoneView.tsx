@@ -147,7 +147,7 @@ export const StartPhoneView: React.FC<StartPhoneViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto p-2 sm:p-4 space-y-3" dir="rtl">
+    <div className="w-full max-w-xl mx-auto p-2 sm:p-4 space-y-3">
       {/* قسم تحديد القائمة المعنية بالسباق وزر Au Départ البارز */}
       <div className="bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-900 border-2 border-amber-500/50 rounded-3xl p-3.5 sm:p-4 shadow-xl space-y-3 relative overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -548,14 +548,14 @@ export const StartPhoneView: React.FC<StartPhoneViewProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <div className="text-left font-mono">
+                    <div className="text-end font-mono">
                       {finished ? (
                         <>
                           <div className="text-xs font-black text-amber-400 flex items-center gap-1 justify-end">
                             <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                             {(runner.finishTime / 1000).toFixed(3)}s
                           </div>
-                          <div className="text-[10px] text-slate-500 text-left">
+                          <div className="text-[10px] text-slate-500 text-end">
                             {runner.rank === 1 ? 'الفائز' : `+${(diffMs / 1000).toFixed(3)}s`}
                           </div>
                         </>

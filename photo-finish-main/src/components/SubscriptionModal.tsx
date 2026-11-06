@@ -118,7 +118,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
     : '';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* رأس النافذة */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-950/60">
@@ -572,7 +572,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                             <Crown className="w-4 h-4 text-amber-400" />
                             <span>نوع الباقة</span>
                           </div>
-                          <span className="text-xs font-black text-amber-300 text-left">{activatedLicense.tierName}</span>
+                          <span className="text-xs font-black text-amber-300 text-end">{activatedLicense.tierName}</span>
                         </div>
 
                         <div className="flex items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 rounded-xl px-3 py-2.5">
@@ -580,7 +580,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                             <Radio className="w-4 h-4 text-cyan-400" />
                             <span>نمط التوزيع</span>
                           </div>
-                          <span className="text-xs font-black text-cyan-300 text-left">
+                          <span className="text-xs font-black text-cyan-300 text-end">
                             {activatedLicense.isQuadPool
                               ? `شبكي 1*4 — يتقاسمه ${activatedLicense.maxSharedSlots} هواتف في نفس السباق`
                               : 'مقيد بجهاز واحد — هذا الهاتف فقط'}
@@ -592,7 +592,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                             <Clock className="w-4 h-4 text-emerald-400" />
                             <span>مدة الاشتراك</span>
                           </div>
-                          <span className="text-xs font-black text-emerald-300 text-left">{activatedExpiryText}</span>
+                          <span className="text-xs font-black text-emerald-300 text-end">{activatedExpiryText}</span>
                         </div>
                       </div>
                     )}

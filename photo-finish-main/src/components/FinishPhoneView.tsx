@@ -375,7 +375,7 @@ export const FinishPhoneView: React.FC<FinishPhoneViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto p-2 sm:p-4 space-y-2.5 sm:space-y-3" dir="rtl">
+    <div className="w-full max-w-lg mx-auto p-2 sm:p-4 space-y-2.5 sm:space-y-3">
       {/* نافذة الكاميرا وخطوط الأروقة وخط النهاية */}
       <div 
         onClick={() => {
@@ -528,7 +528,7 @@ export const FinishPhoneView: React.FC<FinishPhoneViewProps> = ({
         </div>
 
         {/* رأس مؤشرات الكاميرا في الأعلى */}
-        <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-auto">
+        <div className="absolute top-2 end-2 start-2 flex items-center justify-between pointer-events-auto">
           <div className="bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-white font-mono font-bold text-xs flex items-center gap-2 border border-white/10 shadow-lg">
             <span className={`w-2.5 h-2.5 rounded-full ${raceStatus === 'racing' ? 'bg-red-500 animate-ping' : 'bg-emerald-400'}`} />
             <span>{formatClock(clockTimeMs)}</span>
@@ -896,7 +896,7 @@ export const FinishPhoneView: React.FC<FinishPhoneViewProps> = ({
                 key={r.id}
                 disabled={finished || raceStatus !== 'racing'}
                 onClick={() => onLaneFinish(r.lane, clockTimeMs)}
-                className={`p-2.5 rounded-xl text-right font-mono border transition-all overflow-hidden relative ${
+                className={`p-2.5 rounded-xl text-start font-mono border transition-all overflow-hidden relative ${
                   finished
                     ? 'bg-emerald-950/60 border-emerald-600 text-emerald-400'
                     : raceStatus === 'racing'

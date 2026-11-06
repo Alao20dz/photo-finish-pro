@@ -150,7 +150,7 @@ export const QrScannerModal: React.FC<QrScannerModalProps> = ({ onSuccess, onClo
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3" dir="rtl">
+    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3">
       <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl animate-scaleUp text-slate-100 flex flex-col">
         {/* ترويسة النافذة */}
         <div className="p-3.5 bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 border-b border-slate-800 flex items-center justify-between">
@@ -207,10 +207,10 @@ export const QrScannerModal: React.FC<QrScannerModalProps> = ({ onSuccess, onClo
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-6">
             <div className="w-48 h-48 sm:w-56 sm:h-56 border-2 border-cyan-400/80 rounded-3xl relative shadow-[0_0_20px_rgba(6,182,212,0.3)]">
               {/* زوايا بارزة */}
-              <div className="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-cyan-300 rounded-tr-xl" />
-              <div className="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-cyan-300 rounded-tl-xl" />
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-cyan-300 rounded-br-xl" />
-              <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-4 border-l-4 border-cyan-300 rounded-bl-xl" />
+              <div className="absolute -top-1 -start-1 w-6 h-6 border-t-4 border-s-4 border-cyan-300 rounded-ss-xl" />
+              <div className="absolute -top-1 -end-1 w-6 h-6 border-t-4 border-e-4 border-cyan-300 rounded-es-xl" />
+              <div className="absolute -bottom-1 -start-1 w-6 h-6 border-b-4 border-s-4 border-cyan-300 rounded-se-xl" />
+              <div className="absolute -bottom-1 -end-1 w-6 h-6 border-b-4 border-e-4 border-cyan-300 rounded-ee-xl" />
 
               {/* خط المسح المتحرك */}
               <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_8px_#22d3ee] animate-pulse top-1/2 -translate-y-1/2" />

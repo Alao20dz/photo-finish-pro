@@ -462,7 +462,7 @@ export const AdminPortal: React.FC = () => {
     : null;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans" dir="rtl">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       {/* ═══ الشريط العلوي لموقع الإدارة ═══ */}
       <header className="bg-slate-900/90 border-b border-slate-800 px-4 sm:px-6 py-3 sticky top-0 z-40 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
@@ -516,7 +516,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('overview')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'overview'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -529,7 +529,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('generator')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'generator'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -542,7 +542,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('packages')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'packages'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -555,7 +555,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('transfer')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'transfer'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -568,7 +568,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('ledger')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'ledger'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -581,7 +581,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('simulator')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'simulator'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -594,7 +594,7 @@ export const AdminPortal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSection('settings')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-right cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all text-start cursor-pointer ${
               activeSection === 'settings'
                 ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
@@ -609,7 +609,7 @@ export const AdminPortal: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsAthletesModalOpen(true)}
-              className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-blue-300 hover:bg-slate-800/80 hover:text-white transition-all text-right cursor-pointer"
+              className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-blue-300 hover:bg-slate-800/80 hover:text-white transition-all text-start cursor-pointer"
             >
               <Users className="w-4 h-4 text-blue-400" />
               <span>سجل العدائين الموحد 🏃</span>
@@ -617,7 +617,7 @@ export const AdminPortal: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsClubsModalOpen(true)}
-              className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-emerald-300 hover:bg-slate-800/80 hover:text-white transition-all text-right cursor-pointer"
+              className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-emerald-300 hover:bg-slate-800/80 hover:text-white transition-all text-start cursor-pointer"
             >
               <Building2 className="w-4 h-4 text-emerald-400" />
               <span>دليل الأندية والجمعيات 🏛️</span>
@@ -773,7 +773,7 @@ export const AdminPortal: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setLicenseType('quad_pool')}
-                        className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                           licenseType === 'quad_pool'
                             ? 'bg-amber-500/20 border-amber-500 text-amber-300 font-bold shadow-md'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -789,7 +789,7 @@ export const AdminPortal: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setLicenseType('single_device')}
-                        className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                           licenseType === 'single_device'
                             ? 'bg-cyan-500/20 border-cyan-500 text-cyan-300 font-bold shadow-md'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -835,7 +835,7 @@ export const AdminPortal: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => { setTier('CLB8'); setSelectedCustomPkgId(null); }}
-                        className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                           tier === 'CLB8' && !selectedCustomPkgId
                             ? 'bg-amber-500/20 border-amber-500 text-amber-300 font-bold'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -848,7 +848,7 @@ export const AdminPortal: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => { setTier('ENTX'); setSelectedCustomPkgId(null); }}
-                        className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                           tier === 'ENTX' && !selectedCustomPkgId
                             ? 'bg-purple-500/20 border-purple-500 text-purple-300 font-bold'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -878,13 +878,13 @@ export const AdminPortal: React.FC = () => {
                                 setClientName(pkg.name);
                                 setLicenseType(pkg.isQuadPool ? 'quad_pool' : 'single_device');
                               }}
-                              className={`p-2.5 rounded-xl border text-right transition-all cursor-pointer flex items-center justify-between ${
+                              className={`p-2.5 rounded-xl border text-start transition-all cursor-pointer flex items-center justify-between ${
                                 selectedCustomPkgId === pkg.id
                                   ? 'bg-cyan-500/20 border-cyan-500 text-cyan-300 font-bold shadow-md shadow-cyan-500/10'
                                   : 'bg-slate-950/70 border-slate-800 text-slate-400 hover:border-slate-700'
                               }`}
                             >
-                              <div className="truncate min-w-0 flex-1 pl-2">
+                              <div className="truncate min-w-0 flex-1 pe-2">
                                 <p className="text-xs font-bold text-white truncate">{pkg.name}</p>
                                 <p className="text-[10px] text-slate-400 font-mono mt-0.5">
                                   {pkg.laneCount} مسارات • {pricingService.formatPrice(pricingService.getPackagePrice(pkg, systemSettings.displayCurrency), systemSettings.displayCurrency)}
@@ -1277,7 +1277,7 @@ export const AdminPortal: React.FC = () => {
 
                               {/* الأسعار بالعملات */}
                               <div className="pt-1 border-t border-slate-800/80 flex items-baseline justify-between">
-                                <div className="text-right">
+                                <div className="text-start">
                                   <span className="text-lg font-black text-amber-400 font-mono">
                                     {pricingService.formatPrice(pkg.priceDZD, 'DZD')}
                                   </span>
@@ -1285,7 +1285,7 @@ export const AdminPortal: React.FC = () => {
                                     السعر المعتمد (الجزائر 🇩🇿)
                                   </span>
                                 </div>
-                                <div className="text-left text-[11px] font-mono text-slate-400 space-y-0.5">
+                                <div className="text-end text-[11px] font-mono text-slate-400 space-y-0.5">
                                   <p>{pkg.priceEUR} € يورو</p>
                                   <p>{pkg.priceUSD} $ دولار</p>
                                 </div>
@@ -1454,13 +1454,13 @@ export const AdminPortal: React.FC = () => {
 
                 <div className="flex items-center gap-2">
                   <div className="relative">
-                    <Search className="w-3.5 h-3.5 absolute right-3 top-3 text-slate-400" />
+                    <Search className="w-3.5 h-3.5 absolute start-3 top-3 text-slate-400" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="بحث عن كود أو نادي..."
-                      className="bg-slate-950 border border-slate-800 focus:border-amber-500 text-white text-xs rounded-xl py-2 pr-9 pl-3 outline-none"
+                      className="bg-slate-950 border border-slate-800 focus:border-amber-500 text-white text-xs rounded-xl py-2 ps-9 pe-3 outline-none"
                     />
                   </div>
 
@@ -1480,7 +1480,7 @@ export const AdminPortal: React.FC = () => {
 
               {/* جدول التراخيص */}
               <div className="overflow-x-auto rounded-2xl border border-slate-800">
-                <table className="w-full text-right text-xs">
+                <table className="w-full text-start text-xs">
                   <thead className="bg-slate-950 text-slate-400 font-bold border-b border-slate-800">
                     <tr>
                       <th className="p-3">كود الترخيص</th>
@@ -1673,7 +1673,7 @@ export const AdminPortal: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleSimReset}
-                    className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                    className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                       simStep === 'trial'
                         ? 'bg-slate-800 border-slate-600 text-white shadow-md font-bold'
                         : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white'
@@ -1691,7 +1691,7 @@ export const AdminPortal: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleSimStepActivate}
-                    className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                    className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                       simStep === 'activated'
                         ? 'bg-amber-500/20 border-amber-500 text-amber-300 shadow-md font-bold'
                         : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white'
@@ -1709,7 +1709,7 @@ export const AdminPortal: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleSimStepStartRace}
-                    className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                    className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                       simStep === 'racing'
                         ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 shadow-md font-bold animate-pulse'
                         : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white'
@@ -1727,7 +1727,7 @@ export const AdminPortal: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleSimStepFinishRace}
-                    className={`p-3 rounded-2xl border text-right transition-all cursor-pointer ${
+                    className={`p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                       simStep === 'finished'
                         ? 'bg-cyan-500/20 border-cyan-500 text-cyan-300 shadow-md font-bold'
                         : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white'
@@ -1749,7 +1749,7 @@ export const AdminPortal: React.FC = () => {
                       setTransferSourceDev(simPhones.start.id);
                       setTransferTargetDev('PF-9C3E-11B4');
                     }}
-                    className="p-3 rounded-2xl border text-right transition-all cursor-pointer bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:border-purple-500/40"
+                    className="p-3 rounded-2xl border text-start transition-all cursor-pointer bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:border-purple-500/40"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-[10px] bg-purple-500/30 text-purple-300 px-1.5 py-0.5 rounded font-mono">5</span>
@@ -1792,25 +1792,25 @@ export const AdminPortal: React.FC = () => {
                     </div>
 
                     {/* محطة 1: البداية (Top-Right) */}
-                    <div className="absolute top-0 right-10 -translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-emerald-500/60 px-2.5 py-1 rounded-full shadow-lg">
+                    <div className="absolute top-0 start-10 -translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-emerald-500/60 px-2.5 py-1 rounded-full shadow-lg">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                       <span className="text-[10px] font-bold text-emerald-300">🚦 محطة البداية (هاتف 1)</span>
                     </div>
 
                     {/* محطة 2: النهاية (Bottom-Left) */}
-                    <div className="absolute bottom-0 left-10 translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-cyan-500/60 px-2.5 py-1 rounded-full shadow-lg">
+                    <div className="absolute bottom-0 end-10 translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-cyan-500/60 px-2.5 py-1 rounded-full shadow-lg">
                       <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
                       <span className="text-[10px] font-bold text-cyan-300">📸 كاميرا النهاية (هاتف 2)</span>
                     </div>
 
                     {/* محطة 3: الحكم (Center-Bottom) */}
-                    <div className="absolute bottom-2 right-1/3 flex items-center gap-1.5 bg-slate-900 border border-amber-500/60 px-2.5 py-1 rounded-full shadow-lg">
+                    <div className="absolute bottom-2 start-1/3 flex items-center gap-1.5 bg-slate-900 border border-amber-500/60 px-2.5 py-1 rounded-full shadow-lg">
                       <Award className="w-3 h-3 text-amber-400" />
                       <span className="text-[10px] font-bold text-amber-300">⚖️ برج الحكام (هاتف 3)</span>
                     </div>
 
                     {/* محطة 4: غرفة النداء (Top-Left) */}
-                    <div className="absolute top-0 left-10 -translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-purple-500/60 px-2.5 py-1 rounded-full shadow-lg">
+                    <div className="absolute top-0 end-10 -translate-y-1/2 flex items-center gap-1.5 bg-slate-900 border border-purple-500/60 px-2.5 py-1 rounded-full shadow-lg">
                       <Users className="w-3 h-3 text-purple-400" />
                       <span className="text-[10px] font-bold text-purple-300">📋 غرفة النداء (هاتف 4)</span>
                     </div>
@@ -1958,8 +1958,8 @@ export const AdminPortal: React.FC = () => {
                       {/* محدد الرؤية البصري لخط النهاية مع خط الليزر الأحمر */}
                       <div className="relative h-28 bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
                         {/* خط ليزر الوصول الأحمر */}
-                        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-red-500 shadow-[0_0_8px_#ef4444] z-10"></div>
-                        <span className="absolute top-1 left-2 text-[8px] bg-red-950/80 text-red-300 px-1 rounded border border-red-500/40">
+                        <div className="absolute top-0 bottom-0 end-1/2 w-0.5 bg-red-500 shadow-[0_0_8px_#ef4444] z-10"></div>
+                        <span className="absolute top-1 end-2 text-[8px] bg-red-950/80 text-red-300 px-1 rounded border border-red-500/40">
                           LASER LINE
                         </span>
 
@@ -2276,7 +2276,7 @@ export const AdminPortal: React.FC = () => {
                 <div className="space-y-3">
                   {systemSettings.clubProPrices.map((item, index) => (
                     <div key={item.months} className="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3">
-                      <div className="w-full sm:w-44 text-right">
+                      <div className="w-full sm:w-44 text-start">
                         <span className="text-xs font-bold text-white">{item.label}</span>
                       </div>
 
@@ -2344,7 +2344,7 @@ export const AdminPortal: React.FC = () => {
                 <div className="space-y-3">
                   {systemSettings.enterprisePrices.map((item, index) => (
                     <div key={item.months} className="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3">
-                      <div className="w-full sm:w-44 text-right">
+                      <div className="w-full sm:w-44 text-start">
                         <span className="text-xs font-bold text-white">{item.label}</span>
                       </div>
 

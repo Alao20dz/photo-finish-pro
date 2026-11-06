@@ -51,7 +51,7 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[80] bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-3" dir="rtl">
+    <div className="fixed inset-0 z-[80] bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-3">
       <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl">
         {/* رأس النافذة */}
         <div className="flex items-center justify-between gap-3 p-4 border-b border-slate-800">
@@ -129,12 +129,12 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({ onClose }) => {
                 <button
                   type="button"
                   onClick={() => setExpandedId(expanded ? null : race.id)}
-                  className="w-full flex items-center justify-between gap-3 p-3.5 text-right cursor-pointer"
+                  className="w-full flex items-center justify-between gap-3 p-3.5 text-start cursor-pointer"
                 >
                   <div className="min-w-0">
                     <div className="font-black text-xs sm:text-sm text-slate-100 truncate">
                       {race.heatName}
-                      <span className="mr-2 text-[10px] font-mono bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded border border-slate-700">
+                      <span className="ms-2 text-[10px] font-mono bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded border border-slate-700">
                         {race.roomCode}
                       </span>
                     </div>
@@ -174,8 +174,8 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({ onClose }) => {
                       <table className="w-full text-[11px]">
                         <thead>
                           <tr className="bg-slate-800/70 text-slate-400">
-                            <th className="px-2 py-1.5 text-right font-bold">الترتيب</th>
-                            <th className="px-2 py-1.5 text-right font-bold">العداء</th>
+                            <th className="px-2 py-1.5 text-start font-bold">الترتيب</th>
+                            <th className="px-2 py-1.5 text-start font-bold">العداء</th>
                             <th className="px-2 py-1.5 text-center font-bold">الرواق</th>
                             <th className="px-2 py-1.5 text-center font-bold">الزمن</th>
                             <th className="px-2 py-1.5 text-center font-bold">الحالة</th>
@@ -194,7 +194,7 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({ onClose }) => {
                                   </td>
                                   <td className="px-2 py-1.5">
                                     <span className="font-bold">{r.name}</span>
-                                    <span className="text-slate-500 mr-1.5">({r.bib})</span>
+                                    <span className="text-slate-500 ms-1.5">({r.bib})</span>
                                     <span className="text-slate-500 block text-[9px]">{r.country}</span>
                                   </td>
                                   <td className="px-2 py-1.5 text-center font-mono">{r.lane}</td>

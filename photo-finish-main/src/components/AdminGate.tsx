@@ -79,7 +79,7 @@ export const AdminGate: React.FC = () => {
         <AdminPortal />
         <button
           onClick={exitPortal}
-          className="fixed bottom-4 left-4 z-50 flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold shadow-xl backdrop-blur transition-all active:scale-95"
+          className="fixed bottom-4 end-4 z-50 flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold shadow-xl backdrop-blur transition-all active:scale-95"
           title="الخروج من لوحة الإدارة والعودة للتطبيق"
         >
           <LogOut className="w-4 h-4" />
@@ -90,7 +90,7 @@ export const AdminGate: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 font-sans" dir="rtl">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 font-sans">
       <div className={`w-full max-w-sm bg-slate-900/80 border border-slate-800 rounded-3xl p-7 shadow-2xl ${shake ? 'animate-[pfShake_0.4s_ease]' : ''}`}>
         <div className="flex flex-col items-center text-center gap-3 mb-6">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
@@ -104,7 +104,7 @@ export const AdminGate: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="relative">
-            <Lock className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <Lock className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input
               type="password"
               dir="ltr"
@@ -112,7 +112,7 @@ export const AdminGate: React.FC = () => {
               onChange={(e) => { setInput(e.target.value); setError(''); }}
               placeholder="••••••••••••"
               autoFocus
-              className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-2xl py-3 pr-10 pl-4 text-sm font-bold tracking-widest outline-none transition-colors"
+              className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-2xl py-3 ps-10 pe-4 text-sm font-bold tracking-widest outline-none transition-colors"
               aria-label="رمز الدخول للمدير"
             />
           </div>

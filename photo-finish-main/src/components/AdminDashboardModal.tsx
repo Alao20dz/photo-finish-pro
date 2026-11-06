@@ -122,7 +122,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
     : '';
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-scaleUp my-auto">
         
         {/* ترويسة لوحة المدير */}
@@ -236,7 +236,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setTier('CLB8')}
-                        className={`p-3 rounded-xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-xl border text-start transition-all cursor-pointer ${
                           tier === 'CLB8'
                             ? 'bg-amber-500/15 border-amber-500 text-white shadow-md'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
@@ -252,7 +252,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setTier('ENTX')}
-                        className={`p-3 rounded-xl border text-right transition-all cursor-pointer ${
+                        className={`p-3 rounded-xl border text-start transition-all cursor-pointer ${
                           tier === 'ENTX'
                             ? 'bg-purple-500/15 border-purple-500 text-white shadow-md'
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
@@ -422,7 +422,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
 
               <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-right text-xs">
+                  <table className="w-full text-start text-xs">
                     <thead className="bg-slate-950 text-slate-400 font-bold border-b border-slate-800">
                       <tr>
                         <th className="p-3">كود الترخيص</th>
@@ -555,11 +555,11 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                 {/* النوتش العلوي (Phone Notch) */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-4 bg-slate-850 rounded-b-2xl z-40 flex items-center justify-center">
                   <div className="w-10 h-1 bg-slate-700 rounded-full"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-900 border border-slate-700 ml-2"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-900 border border-slate-700 me-2"></div>
                 </div>
 
                 {/* شاشة الهاتف الداخلية */}
-                <div className="flex-1 bg-slate-950 pt-5 pb-3 px-3 flex flex-col overflow-y-auto" dir="rtl">
+                <div className="flex-1 bg-slate-950 pt-5 pb-3 px-3 flex flex-col overflow-y-auto">
                   {/* شريط معلومات الهاتف */}
                   <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono mb-2 px-1">
                     <span>09:41 ⚡</span>
@@ -651,9 +651,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       {simRole === 'finish' && (
                         <div className="space-y-2 text-center pt-2">
                           <div className="h-28 bg-slate-950 border border-cyan-500/30 rounded-xl flex items-center justify-center relative overflow-hidden">
-                            <div className="absolute top-0 bottom-0 left-1/4 w-0.5 bg-cyan-400"></div>
-                            <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-red-500"></div>
-                            <div className="absolute top-0 bottom-0 left-3/4 w-0.5 bg-purple-400"></div>
+                            <div className="absolute top-0 bottom-0 end-1/4 w-0.5 bg-cyan-400"></div>
+                            <div className="absolute top-0 bottom-0 end-1/2 w-1 bg-red-500"></div>
+                            <div className="absolute top-0 bottom-0 end-3/4 w-0.5 bg-purple-400"></div>
                             <span className="text-[10px] text-slate-500">معاينة البوابات الثلاثية (Cyan | Red | Purple)</span>
                           </div>
                           <p className="text-[10px] text-emerald-400 font-bold">تسجيل عبور المسارات L1 - L4 أوتوماتيكياً</p>
@@ -661,7 +661,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       )}
 
                       {simRole === 'judge' && (
-                        <div className="space-y-1.5 text-right pt-1">
+                        <div className="space-y-1.5 text-start pt-1">
                           <p className="text-[10px] font-bold text-slate-300">النتائج الرسمية (Rule 164.2):</p>
                           <div className="bg-slate-950 p-1.5 rounded-lg border border-slate-800 text-[10px] flex justify-between">
                             <span>1. يوسف العبدلي (L1)</span>
@@ -678,7 +678,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       )}
 
                       {simRole === 'chambre_dappel' && (
-                        <div className="space-y-1.5 text-right pt-1">
+                        <div className="space-y-1.5 text-start pt-1">
                           <p className="text-[10px] font-bold text-slate-300">توزيع المجموعات الحالية (Séries):</p>
                           <div className="bg-slate-950 p-2 rounded-lg border border-slate-800 text-[10px] text-slate-400 space-y-1">
                             <p className="text-white font-bold">المجموعة 1 • 100m رجال</p>

@@ -244,7 +244,7 @@ export const ChambreDappelView: React.FC<ChambreDappelViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-2 sm:p-4 space-y-4 text-slate-100" dir="rtl">
+    <div className="w-full max-w-5xl mx-auto p-2 sm:p-4 space-y-4 text-slate-100">
       {/* إشعار تأكيد البث اللحظي */}
       {broadcastNotification && (
         <div className="p-3 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl text-white font-bold text-xs flex items-center justify-between shadow-xl animate-fade-in border border-emerald-400/40">
@@ -354,7 +354,7 @@ export const ChambreDappelView: React.FC<ChambreDappelViewProps> = ({
                   <button
                     type="button"
                     onClick={() => onSelectHeat(idx)}
-                    className="font-bold text-xs flex items-center gap-1.5 cursor-pointer text-right"
+                    className="font-bold text-xs flex items-center gap-1.5 cursor-pointer text-start"
                   >
                     <span>{heat.name || `قائمة ${heat.number}`}</span>
                     <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
@@ -368,7 +368,7 @@ export const ChambreDappelView: React.FC<ChambreDappelViewProps> = ({
                   </button>
 
                   {/* أزرار ترتيب القائمة يدوياً (Move Up / Move Down) */}
-                  <div className="flex items-center gap-0.5 mr-1 border-r border-slate-700/60 pr-1">
+                  <div className="flex items-center gap-0.5 ms-1 border-s border-slate-700/60 ps-1">
                     <button
                       type="button"
                       disabled={idx === 0}
@@ -784,7 +784,7 @@ export const ChambreDappelView: React.FC<ChambreDappelViewProps> = ({
                 <span className="text-[11px] text-slate-600">املأ النموذج على اليمين لتسجيل العدائين.</span>
               </div>
             ) : (
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead>
                   <tr className="border-b border-slate-800 text-slate-400 text-[11px]">
                     <th className="py-2 px-2 text-center">الرواق</th>

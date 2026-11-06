@@ -170,7 +170,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-4 text-white overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 w-full max-w-5xl rounded-2xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
@@ -225,7 +225,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
                 </div>
 
                 {authError && (
-                  <div className="p-3 bg-red-950/60 border border-red-500/40 rounded-xl text-red-300 text-xs text-right flex items-start gap-2">
+                  <div className="p-3 bg-red-950/60 border border-red-500/40 rounded-xl text-red-300 text-xs text-start flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                     <span>{authError}</span>
                   </div>
@@ -254,7 +254,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
                 </form>
 
                 {/* روابط سريعة للمدربين التجريبيين */}
-                <div className="pt-4 border-t border-slate-700/60 text-right">
+                <div className="pt-4 border-t border-slate-700/60 text-start">
                   <span className="text-[11px] font-bold text-slate-400 block mb-2">أكواد تجريبية للمدربين المعتمدين:</span>
                   <div className="space-y-1.5">
                     {INITIAL_COACHES.map((c) => (
@@ -266,7 +266,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
                       >
                         <div>
                           <span className="font-bold text-white">{c.name}</span>
-                          <span className="text-[10px] text-slate-400 mr-2">({c.clubName})</span>
+                          <span className="text-[10px] text-slate-400 ms-2">({c.clubName})</span>
                         </div>
                         <span className="font-mono text-[11px] text-amber-400 font-bold bg-slate-800 px-2 py-0.5 rounded">
                           PIN: {c.pinCode}
@@ -366,7 +366,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
                   </div>
                 ) : (
                   <div className="overflow-x-auto rounded-xl border border-slate-800">
-                    <table className="w-full text-right text-xs">
+                    <table className="w-full text-start text-xs">
                       <thead className="bg-slate-800/80 text-slate-300 font-semibold border-b border-slate-700">
                         <tr>
                           <th className="py-2.5 px-3">العداء</th>
@@ -462,7 +462,7 @@ export const CoachPortalModal: React.FC<CoachPortalModalProps> = ({ isOpen, onCl
       {/* ═══════════════════════════════════════════════════ */}
       {isNewRegOpen && activeCoach && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl p-6 text-right max-h-[95vh] overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl p-6 text-start max-h-[95vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
               <div className="flex items-center gap-2 font-bold text-base text-white">
                 <Send className="w-5 h-5 text-emerald-400" />

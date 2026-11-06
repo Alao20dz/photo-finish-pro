@@ -41,7 +41,7 @@ export const RaceSchedulePanel: React.FC<RaceSchedulePanelProps> = ({
   const upcomingHeats = heats.filter(h => h.status !== 'completed' && h.id !== currentDispatchedHeat?.id);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto" dir="rtl">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-scaleUp my-auto text-slate-100 flex flex-col max-h-[90vh]">
         {/* الترويسة */}
         <div className="bg-gradient-to-r from-slate-900 via-amber-950/40 to-slate-900 p-4 border-b border-slate-800 flex items-center justify-between">
@@ -76,7 +76,7 @@ export const RaceSchedulePanel: React.FC<RaceSchedulePanelProps> = ({
         {/* قسم بارز جداً: السباق المعني المحدد على خط الانطلاق (Au Départ 🏁) */}
         {currentDispatchedHeat && (
           <div className="p-4 bg-gradient-to-r from-amber-950/60 via-orange-950/50 to-slate-900 border-b border-amber-500/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-0 start-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-start gap-3">
                 <div className="p-3 bg-amber-500 text-slate-950 rounded-2xl font-black text-xl shadow-lg shadow-amber-500/30 animate-pulse shrink-0">
