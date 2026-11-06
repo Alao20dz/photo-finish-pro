@@ -64,3 +64,6 @@ server.log
 *.db
 *.sqlite
 *.sqlite3
+
+# allow the example file to be committed
+!.env.example
