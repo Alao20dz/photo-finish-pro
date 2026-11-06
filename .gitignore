@@ -65,5 +65,9 @@ server.log
 *.sqlite
 *.sqlite3
 
+# Supabase CLI session state (never commit)
+supabase/.temp/
+supabase/.branches/
+
 # allow the example file to be committed
 !.env.example
