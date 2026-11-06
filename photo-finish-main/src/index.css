@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    /* منع أي تمرير/تجاوز أفقي على مستوى الصفحة كاملة (clip لا يكسر position: sticky) */
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    max-width: 100vw;
+  }
+
+  /* الوسائط لا تتمدد أبداً أبعد من حاويتها */
+  img, video, canvas {
+    max-width: 100%;
+  }
+
+  /* خط الأرقام الرياضية الرقمية للساعة */
+  .font-mono {
+    font-family: 'Chakra Petch', monospace, sans-serif;
+  }
+}
+
+/* تخصيص أشرطة التمرير لمظهر فخم */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* تأثير التوهج للعلامات */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+}

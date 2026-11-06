@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-cairo);
+  --font-mono: var(--font-plex-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-live: var(--live);
+  --color-track: var(--track);
+  --color-night: var(--night);
+  --color-sun: var(--sun);
+}
+
+/* ═══ رموز التصميم — هوية مضمار ألعاب القوى + Photo Finish ═══ */
+:root {
+  --radius: 0.75rem;
+  /* الأساسي: أحمر-برتقالي مضمار نابض */
+  --track: #e63917;
+  --night: #0b1b3a;
+  --live: #ff2d55;
+  --sun: #ffb100;
+  --background: #faf7f2;            /* رمادي دافئ فاتح */
+  --foreground: #1a1d23;
+  --card: #ffffff;
+  --card-foreground: #1a1d23;
+  --popover: #ffffff;
+  --popover-foreground: #1a1d23;
+  --primary: #e63917;
+  --primary-foreground: #ffffff;
+  --secondary: #0b1b3a;
+  --secondary-foreground: #ffffff;
+  --muted: #f1ece3;
+  --muted-foreground: #6b6660;
+  --accent: #fdeae4;
+  --accent-foreground: #b32710;
+  --destructive: #d41717;
+  --border: #e8e1d5;
+  --input: #e8e1d5;
+  --ring: #e63917;
+}
+
+.dark {
+  --background: #0a0c12;
+  --foreground: #f2f0ea;
+  --card: #12151d;
+  --card-foreground: #f2f0ea;
+  --popover: #12151d;
+  --popover-foreground: #f2f0ea;
+  --primary: #ff5a38;
+  --primary-foreground: #ffffff;
+  --secondary: #16233f;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1e29;
+  --muted-foreground: #9aa0ab;
+  --accent: #2a1a14;
+  --accent-foreground: #ff8a70;
+  --destructive: #ff4545;
+  --border: #232836;
+  --input: #232836;
+  --ring: #ff5a38;
+  --live: #ff3d68;
+}
+
+/* وضع الشمس العالي التباين للميدان (تفعيل يدوي بـ .sunlight) */
+.sunlight {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #c81e00;
+  --primary-foreground: #ffffff;
+  --muted: #f0f0f0;
+  --muted-foreground: #333333;
+  --border: #000000;
+  --input: #000000;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01";
+  }
+  /* أرقام جدولية ثابتة العرض للأزمنة والنتائج */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-plex-mono), monospace;
+  }
+}
+
+/* ═══ حركة الشريط المتحرك للنتائج الحية ═══ */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+}
+[dir="ltr"] .animate-ticker {
+  animation-direction: reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker { animation: none; }
+}
+
+/* ═══ خطوط المسار الخلفية ═══ */
+.track-lines {
+  background-image: repeating-linear-gradient(
+    -12deg,
+    transparent 0px,
+    transparent 46px,
+    color-mix(in srgb, var(--track) 7%, transparent) 46px,
+    color-mix(in srgb, var(--track) 7%, transparent) 48px
+  );
+}
+
+/* شريط المسح الضوئي */
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateY(2400%); opacity: 0; }
+}
+.animate-scanline { animation: scanline 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-scanline { animation: none; }
+}

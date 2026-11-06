@@ -1,0 +1,17 @@
+{
+  "name": "photo-finish-relay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "خادم الترحيل السحابي لنظام Photo Finish Pro — بروتوكول متطابق مع الخادم المحلي في vite.config.ts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "ws": "^8.22.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

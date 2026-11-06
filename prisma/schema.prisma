@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// منصة "Photo Finish Pro" متعددة الرابطات — مخطط البيانات الأساسي
+// هذه مرآة تشغيلية محلية (SQLite) للمخطط الرسمي في supabase/migrations
+// المصدر الرسمي للنشر: supabase/migrations/*.sql مع RLS
+// ═══════════════════════════════════════════════════════════════
+
+model League {
+  id        String   @id @default(cuid())
+  nameAr    String
+  nameFr    String
+  wilaya    String
+  code      String   @unique
+  logoUrl   String?
+  colorsJson String?
+  status    String   @default("pending") // pending | active | suspended
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clubs       Club[]
+  members     LeagueMember[]
+  competitions Competition[]
+  codes       CompetitionCode[]
+}
+
+model LeagueMember {
+  id          String @id @default(cuid())
+  leagueId    String
+  league      League @relation(fields: [leagueId], references: [id])
+  userName    String
+  email       String
+  role        String // executive_manager | tech_manager | secretary | results_clerk
+  permissions String // JSON array
+  createdAt   DateTime @default(now())
+
+  @@unique([leagueId, email])
+}
+
+model Club {
+  id             String   @id @default(cuid())
+  leagueId       String
+  league         League   @relation(fields: [leagueId], references: [id])
+  nameAr         String
+  code           String   @unique
+  logoUrl        String?
+  approvalStatus String   @default("pending") // pending | approved | suspended
+  quotaPerEvent  Int      @default(2)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  athletes    Athlete[]
+  coaches     Coach[]
+  registrations Registration[]
+}
+
+model Coach {
+  id        String   @id @default(cuid())
+  clubId    String
+  club      Club     @relation(fields: [clubId], references: [id])
+  name      String
+  email     String   @unique
+  phone     String?
+  status    String   @default("pending") // pending | approved | suspended
+  createdAt DateTime @default(now())
+}
+
+model Athlete {
+  id                String   @id @default(cuid())
+  clubId            String
+  club              Club     @relation(fields: [clubId], references: [id])
+  firstName         String
+  lastName          String
+  gender            String   // M | F
+  birthDate         String   // ISO date — الصنف يُحسب منه
+  licenseNo         String?
+  wilaya            String?
+  medicalCertExpiry String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  registrations Registration[]
+}
+
+model Competition {
+  id                   String   @id @default(cuid())
+  leagueId             String
+  league               League   @relation(fields: [leagueId], references: [id])
+  titleAr              String
+  titleFr              String?
+  type                 String   // track | field | cross_country | road
+  venue                String
+  startDate            String
+  endDate              String
+  status               String   @default("draft") // draft | published | registration_open | registration_closed | frozen | running | finished | results_published
+  registrationDeadline String?
+  visibility           String   @default("public") // public | unlisted
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  events       CompetitionEvent[]
+  registrations Registration[]
+  codes        CompetitionCode[]
+}
+
+model CompetitionEvent {
+  id            String      @id @default(cuid())
+  competitionId String
+  competition   Competition @relation(fields: [competitionId], references: [id])
+  discipline    String      // 100m | 400m | long_jump | high_jump | shot_put | cross_7k ...
+  gender        String      // M | F
+  category      String      // u18 | u20 | elite
+  attemptsCount Int?        // 3 | 6 للقفز والرمي
+  roundsJson    String?
+  heightsJson   String?
+  status        String      @default("open") // open | sealed | running | done
+  createdAt     DateTime    @default(now())
+
+  registrations Registration[]
+}
+
+model Registration {
+  id            String           @id @default(cuid())
+  competitionId String
+  competition   Competition      @relation(fields: [competitionId], references: [id])
+  eventId       String
+  event         CompetitionEvent @relation(fields: [eventId], references: [id])
+  athleteId     String
+  athlete       Athlete          @relation(fields: [athleteId], references: [id])
+  clubId        String
+  club          Club             @relation(fields: [clubId], references: [id])
+  coachId       String?
+  status        String           @default("submitted") // draft | submitted | approved | rejected | needs_edit
+  reviewNote    String?
+  bibNumber     Int?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model CompetitionCode {
+  id            String      @id @default(cuid())
+  competitionId String
+  competition   Competition @relation(fields: [competitionId], references: [id])
+  leagueId      String
+  league        League      @relation(fields: [leagueId], references: [id])
+  codeHash      String      @unique // SHA-256 للكود — لا يُخزَّن الكود الأصلي
+  codeMasked    String      // مثل LIG31-****-Q9TX للعرض
+  role          String      // checkpoint_judge | field_judge | chief_judge | call_room | results_clerk
+  scope         String      @default("competition") // competition | checkpoint | event
+  assignedTo    String?
+  note          String?
+  expiresAt     DateTime
+  maxUses       Int         @default(1)
+  uses          Int         @default(0)
+  revoked       Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+
+  sessions CodeSession[]
+}
+
+model CodeSession {
+  id         String          @id @default(cuid())
+  codeId     String
+  code       CompetitionCode @relation(fields: [codeId], references: [id])
+  deviceId   String
+  authUserId String? // نظير auth.uid() في جلسة Supabase Anonymous
+  createdAt  DateTime        @default(now())
+  lastSeenAt DateTime        @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String
+  action    String
+  entity    String
+  entityId  String?
+  beforeJson String?
+  afterJson  String?
+  reason    String?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  toUser    String
+  channel   String   @default("in_app") // in_app | email | sms | whatsapp
+  template  String
+  status    String   @default("queued") // queued | sent | failed
+  payloadJson String?
+  createdAt DateTime @default(now())
+}

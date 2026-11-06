@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check (tsc --noEmit)
+        run: npm run typecheck
+
+      - name: Unit & engine tests (vitest)
+        run: npm test
+
+      - name: Production build
+        run: npm run build
+
+      - name: Security sweep — no compromised secrets in bundle
+        run: |
+          ! grep -rqE "PFP-ADMIN-2026|PFP-SecureAdmin-2026|PFP-SECUREADMIN-2026|PFP_ATHLETICS_OFFLINE_SECRET" dist/ src/ server/ relay-server/ index.html \
+            || { echo "❌ Compromised secret found in the shipped bundle"; exit 1; }
+          echo "✅ Secret sweep clean: no backdoor codes in dist/src/server"
+
+      - name: Verify dist output
+        run: |
+          test -f dist/index.html
+          echo "✅ Build output verified: dist/index.html exists"
+
+      - name: Upload PWA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-finish-pro-dist
+          path: dist/
+          retention-days: 7

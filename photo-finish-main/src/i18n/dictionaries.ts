@@ -1,0 +1,219 @@
+/**
+ * Photo Finish Pro — قواميس الواجهة الثنائية (عربي / فرنسي)
+ * =========================================================
+ * كل مفتاح نصي في الواجهة له مقابله في اللغتين. الإضافة مستقبلية بأمان:
+ * أضف المفتاح في الواجهتين معاً (النوع يفرض ذلك عبر Record<DictKey, string>).
+ */
+
+export type Lang = 'ar' | 'fr';
+
+export const ar = {
+  app_name: 'Photo Finish Pro',
+  app_tagline: 'منظومة التوقيت الإلكتروني والتحكيم لألعاب القوى',
+
+  // الشريط العلوي
+  race_track: 'مضمار السباق:',
+  language: 'اللغة',
+  lang_ar: 'عربي',
+  lang_fr: 'Français',
+
+  // حالة الترخيص
+  license_host: 'اشتراك معتمد (هاتف مضيف) 👑',
+  license_shared: 'متقاسم ترخيص 1*4 شبكي 🏆',
+  license_locked: 'انتهت الفترة التجريبية 🔒',
+  license_trial: 'فترة تجريبية مجانية ⏱️',
+  lanes_open: '8 مسارات مفتوحة',
+  locked_out: 'مقفل',
+  trial_days: '7 أيام كاملة',
+  license_valid_until: 'صالح لغاية',
+  inherited_from: 'ورث الترخيص من',
+  same_room_free: 'في نفس الغرفة مجاناً!',
+  trial_locked_hint: 'انتهت 7 أيام التجربة • يلزم تفعيل كود أو الاتصال بهاتف مشترك 1*4',
+  trial_full_features: 'تجربة مجانية بكامل ميزات 1*4',
+  btn_activate: 'تفعيل',
+  btn_packages: 'الباقات',
+
+  // حاجز القفل
+  paywall_title: 'تم قفل محطات التحكيم والسباق 🔒',
+  paywall_body: 'انتهت فترة التجربة المجانية الكاملة (7 أيام). وفقاً لنظام المنظومة، يتطلب تشغيل محطات السباق إما:',
+  paywall_opt1: '1. تفعيل اشتراك معتمد أو إدخال كود رسمي 👑',
+  paywall_opt2: '2. الاتصال بشبكة هاتف مشترك في المضمار (1*4) 📷',
+  paywall_hint: '💡 إذا كان لدى ناديك هاتف مفعل في المضمار، يكفي الاتصال برمز غرفته ليتقاسم معك الصلاحيات مجاناً!',
+
+  // شبكة المحطات
+  choose_station: 'اختر محطة هذا الهاتف في سباق اليوم:',
+  stations_count: '6 محطات متزامنة',
+  station: 'محطة',
+  station_new: 'جديد',
+
+  station_start_title: 'هاتف خط البداية (Starter) 🚦',
+  station_start_desc: 'إطلاق مسدس السباق الصوتي، أوامر الانطلاق الرسمية (À vos marques / Prêts)، وبث إشارة الصفر لكافة الهواتف.',
+  station_start_f1: '✓ حساس صوتي 96dB',
+  station_start_f2: '✓ إشارة P2P موحدة',
+
+  station_finish_title: 'كاميرا خط النهاية (Photo Finish) 📸',
+  station_finish_desc: 'تصوير عالي السرعة (1000 FPS)، خط ليزر بصري رأسي لقطع خيط الصدر، ومسح شريطي متواصل Slit-Scan.',
+  station_finish_f1: '✓ ليزر بصري 1/1000s',
+  station_finish_f2: '✓ التقاط تلقائي للجذع',
+
+  station_judge_title: 'برج الحكام والنتائج الرسمية (Chief Judge) ⚖️',
+  station_judge_desc: 'شاشة التوقيت الرقمي الموحد، اعتماد ترتيب الأروقة والعدائين، وتصدير وطباعة استمارات التحكيم الدولية IAAF.',
+  station_judge_f1: '✓ عداد متزامن حي',
+  station_judge_f2: '✓ تصدير PDF/IAAF',
+
+  station_chambre_title: 'غرفة النداء وتوزيع الأروقة (Call Room) 📋',
+  station_chambre_desc: 'فحص ومطابقة الصدريات، تسجيل الأندية والولايات (58 ولاية)، وتوزيع العدائين على المسارات 1 إلى 8 أو 10.',
+  station_chambre_f1: '✓ 58 ولاية جزائرية',
+  station_chambre_f2: '✓ مزامنة فورية للقوائم',
+
+  station_checkpoint_title: 'حكم نقطة مراقبة (Checkpoint Judge) 🚩',
+  station_checkpoint_desc: 'تسجيل عبور العدائين الميداني في نقاط المسار (CP01, CP02...)، لوحة أرقام سريعة للأفواج، ومسح متواصل لـ QR الصدريات مع حفظ دون إنترنت.',
+  station_checkpoint_f1: '✓ لوحة أرقام سريعة',
+  station_checkpoint_f2: '✓ مسح QR متتابع',
+  station_checkpoint_f3: '✓ Offline-First',
+
+  station_manager_title: 'مدير منافسات ألعاب القوى (Athletics Manager) 🗺️',
+  station_manager_desc: 'تصميم المسارات وخرائط نقاط المراقبة، إدارة قواعد العدائين والأندية، اعتماد النتائج النهائية، وغرفة الحكم العام للشذوذ.',
+  station_manager_f1: '✓ خرائط GPS دون إنترنت',
+  station_manager_f2: '✓ اعتماد ورسمي للنتائج',
+
+  // عبارات مشتركة
+  common_close: 'إغلاق',
+  common_confirm: 'تأكيد',
+  common_cancel: 'إلغاء',
+  common_save: 'حفظ',
+  common_export: 'تصدير',
+  common_print: 'طباعة',
+  common_delete: 'حذف',
+  common_edit: 'تعديل',
+  common_back: 'رجوع',
+  common_loading: 'جاري التحميل...',
+  common_offline: 'دون إنترنت',
+  common_online: 'متصل',
+
+  // أدوار (للاستخدام في الشاشات)
+  role_start: 'خط البداية',
+  role_finish: 'خط النهاية',
+  role_judge: 'الحكم العام',
+  role_chambre: 'غرفة النداء',
+  role_checkpoint: 'حكم نقطة مراقبة',
+  role_manager: 'مدير المنافسات',
+
+  // النتائج والأرقام القياسية
+  results_title: 'النتائج الرسمية',
+  results_rank: 'المرتبة',
+  results_bib: 'الرقم',
+  results_name: 'الاسم',
+  results_club: 'النادي',
+  results_time: 'الزمن',
+  results_wind: 'الرياح',
+  results_record: 'رقم قياسي',
+  record_nr: 'رقم وطني جديد',
+  record_pb: 'أفضل رقم شخصي',
+  record_mr: 'رقم للمنافسة',
+  record_none: '—',
+} as const;
+
+export type DictKey = keyof typeof ar;
+
+export const fr: Record<DictKey, string> = {
+  app_name: 'Photo Finish Pro',
+  app_tagline: 'Système de chronométrage électronique et de jugement pour l\'athlétisme',
+
+  race_track: 'Piste de course :',
+  language: 'Langue',
+  lang_ar: 'العربية',
+  lang_fr: 'Français',
+
+  license_host: 'Abonnement certifié (téléphone hôte) 👑',
+  license_shared: 'Licence 1×4 partagée sur le réseau 🏆',
+  license_locked: 'Période d\'essai expirée 🔒',
+  license_trial: 'Essai gratuit ⏱️',
+  lanes_open: '8 couloirs ouverts',
+  locked_out: 'Verrouillé',
+  trial_days: '7 jours complets',
+  license_valid_until: 'Valable jusqu\'au',
+  inherited_from: 'Licence héritée de',
+  same_room_free: 'dans la même salle, gratuitement !',
+  trial_locked_hint: 'Les 7 jours d\'essai sont expirés • Activez un code ou rejoignez un téléphone partagé 1×4',
+  trial_full_features: 'Essai gratuit avec toutes les fonctions 1×4',
+  btn_activate: 'Activer',
+  btn_packages: 'Forfaits',
+
+  paywall_title: 'Stations de jugement et de course verrouillées 🔒',
+  paywall_body: 'La période d\'essai gratuite complète (7 jours) est expirée. Selon le règlement du système, l\'utilisation des stations de course nécessite :',
+  paywall_opt1: '1. Activer un abonnement certifié ou saisir un code officiel 👑',
+  paywall_opt2: '2. Rejoindre le réseau d\'un téléphone déjà activé sur la piste (1×4) 📷',
+  paywall_hint: '💡 Si votre club a déjà un téléphone activé sur la piste, il suffit de rejoindre le code de sa salle pour partager ses droits gratuitement !',
+
+  choose_station: 'Choisissez la station de ce téléphone pour la course du jour :',
+  stations_count: '6 stations synchronisées',
+  station: 'Station',
+  station_new: 'Nouveau',
+
+  station_start_title: 'Téléphone de départ (Starter) 🚦',
+  station_start_desc: 'Coup de pistolet acoustique, ordres officiels de départ (À vos marques / Prêts), et diffusion du signal zéro à tous les téléphones.',
+  station_start_f1: '✓ Capteur sonore 96dB',
+  station_start_f2: '✓ Signal P2P unifié',
+
+  station_finish_title: 'Caméra ligne d\'arrivée (Photo Finish) 📸',
+  station_finish_desc: 'Capture à haute vitesse (1000 FPS), ligne laser verticale au niveau du torse, et balayage Slit-Scan continu.',
+  station_finish_f1: '✓ Laser optique 1/1000s',
+  station_finish_f2: '✓ Détection automatique du torse',
+
+  station_judge_title: 'Tour des juges et résultats officiels (Juge-arbitre) ⚖️',
+  station_judge_desc: 'Écran de chronométrage numérique unifié, validation du classement des couloirs, export et impression des formulaires IAAF.',
+  station_judge_f1: '✓ Compteur synchronisé en direct',
+  station_judge_f2: '✓ Export PDF/IAAF',
+
+  station_chambre_title: 'Salle d\'appel et répartition des couloirs (Call Room) 📋',
+  station_chambre_desc: 'Contrôle des dossards, enregistrement des clubs et wilayas (58 wilayas), répartition des athlètes sur les couloirs 1 à 8 ou 10.',
+  station_chambre_f1: '✓ 58 wilayas algériennes',
+  station_chambre_f2: '✓ Synchronisation instantanée des listes',
+
+  station_checkpoint_title: 'Juge de point de contrôle (Checkpoint Judge) 🚩',
+  station_checkpoint_desc: 'Enregistrement des passages aux points du parcours (CP01, CP02...), saisie rapide des dossards par vagues, et scan QR continu hors ligne.',
+  station_checkpoint_f1: '✓ Saisie rapide des dossards',
+  station_checkpoint_f2: '✓ Scan QR séquentiel',
+  station_checkpoint_f3: '✓ Hors ligne d\'abord',
+
+  station_manager_title: 'Responsable des compétitions d\'athlétisme (Athletics Manager) 🗺️',
+  station_manager_desc: 'Conception des parcours et cartes des points de contrôle, gestion des bases athlètes et clubs, validation des résultats finaux et salle du juge-arbitre.',
+  station_manager_f1: '✓ Cartes GPS hors ligne',
+  station_manager_f2: '✓ Validation officielle des résultats',
+
+  common_close: 'Fermer',
+  common_confirm: 'Confirmer',
+  common_cancel: 'Annuler',
+  common_save: 'Enregistrer',
+  common_export: 'Exporter',
+  common_print: 'Imprimer',
+  common_delete: 'Supprimer',
+  common_edit: 'Modifier',
+  common_back: 'Retour',
+  common_loading: 'Chargement...',
+  common_offline: 'Hors ligne',
+  common_online: 'Connecté',
+
+  role_start: 'Ligne de départ',
+  role_finish: 'Ligne d\'arrivée',
+  role_judge: 'Juge-arbitre',
+  role_chambre: 'Salle d\'appel',
+  role_checkpoint: 'Juge de point de contrôle',
+  role_manager: 'Responsable des compétitions',
+
+  results_title: 'Résultats officiels',
+  results_rank: 'Rang',
+  results_bib: 'Dossard',
+  results_name: 'Nom',
+  results_club: 'Club',
+  results_time: 'Temps',
+  results_wind: 'Vent',
+  results_record: 'Record',
+  record_nr: 'Nouveau record national',
+  record_pb: 'Record personnel',
+  record_mr: 'Record de la compétition',
+  record_none: '—',
+};
+
+export const dictionaries: Record<Lang, Record<DictKey, string>> = { ar, fr };
