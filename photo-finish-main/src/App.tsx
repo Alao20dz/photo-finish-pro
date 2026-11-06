@@ -34,6 +34,9 @@ import { checkpointStorage } from './services/checkpointStorage';
 import { passageSyncEngine } from './services/passageSyncEngine';
 import { auditService } from './services/securityService';
 import { dispatchNetworkMessage } from './services/messageHandlers/messageDispatcher';
+import { router } from './services/router';
+import { resolveEntry, type EntryResolution } from './services/entryResolver';
+import { PublicSite } from './components/public/PublicSite';
 
 const DEFAULT_RUNNERS: Runner[] = [
   { id: 1, bib: 101, name: 'يوسف العبدلي', country: 'الجزائر 🇩🇿', lane: 1, color: '#EF4444', finishTime: 0, status: 'OK' },
@@ -1274,24 +1277,45 @@ export const App: React.FC = () => {
   );
 };
 
-// ═══ الجذر: يوجه إلى ADMIN SUITE عند وجود ?admin في الرابط ═══
-// مثال: https://<domain>/?admin → بوابة رمز المدير → لوحة التراخيص
+// ═══ الجذر: موجّه الدخول (المرحلة 3) ═══
+// أولويات الحسم في resolveEntry:
+//   ‎?admin‎ → بوابة المنصة (سلوك قديم محفوظ) · ‎?role=/‎?room= → وضع المنافسة (QR الهواتف)
+//   ‎#/league/:id‎ → صفحة رابطة عمومية · ‎#/compete‎ → وضع المنافسة · الفراغ → الموقع العمومي
 const AppRoot: React.FC = () => {
-  const [adminMode] = useState<boolean>(() => {
-    try { return new URLSearchParams(window.location.search).has('admin'); } catch { return false; }
+  const [entry, setEntry] = useState<EntryResolution>(() => {
+    try {
+      return resolveEntry(window.location.hash, window.location.search);
+    } catch {
+      return { screen: 'public-home', leagueId: null };
+    }
   });
 
+  // إعادة الحسم عند كل تغيير مسار (زر الرجوع/الأمام مشمول عبر hashchange)
+  useEffect(() => router.subscribe(() => {
+    try {
+      setEntry(resolveEntry(window.location.hash, window.location.search));
+    } catch { /* بيئة بلا نافذة */ }
+  }), []);
+
   // ═══ إيصال قناة هوية الرابطة (المرحلة 2): ?league=<id> ═══
-  // يجلب الهوية من Supabase ويطبّقها كمتغيرات CSS — آمن أوفلاين
+  // يعمل مع أي شاشة (الموقع العمومي أو وضع المنافسة) — آمن أوفلاين
   // (يفشل بصمت ويبقي الهوية المحفوظة محلياً).
   useEffect(() => {
     try {
       const leagueId = new URLSearchParams(window.location.search).get('league');
       if (leagueId) void loadAndApplyLeagueTheme(leagueId);
     } catch { /* بيئة بلا نافذة */ }
-  }, []);
+  }, [entry]);
 
-  return adminMode ? <AdminGate /> : <App />;
+  switch (entry.screen) {
+    case 'admin':
+      return <AdminGate />;
+    case 'compete':
+      return <App />;
+    default:
+      // public-home و league (الصفحة الداخلية تحسم مسارها من الموجّه مباشرة)
+      return <PublicSite />;
+  }
 };
 
 export default AppRoot;
