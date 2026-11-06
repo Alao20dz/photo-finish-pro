@@ -1,6 +1,7 @@
 import React from 'react';
 import { Volume2, VolumeX, Wifi, WifiOff, Settings, RotateCcw, BellRing, Globe, Home, ArrowRight, ListOrdered, Crown, ArrowLeftRight, Archive } from 'lucide-react';
 import { PhoneRole, LicensePoolInfo } from '../types/race';
+import { useLeagueTheme } from '../hooks/useLeagueTheme';
 
 interface HeaderProps {
   role: PhoneRole;
@@ -49,6 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   isHoldingBell,
   isPeerSirenRinging
 }) => {
+  const league = useLeagueTheme();
   return (
     <header className="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white px-2.5 sm:px-4 py-2 sticky top-0 z-50 shadow-lg" dir="rtl">
       <div className="max-w-6xl mx-auto flex flex-col gap-1.5">
@@ -56,8 +58,10 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 min-w-0">
           {/* اللوجو والعنوان */}
           <div className="flex items-center gap-2 min-w-0">
-            <div className="w-8 h-8 shrink-0 rounded-xl bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 flex items-center justify-center font-black text-slate-950 text-xs shadow-md shadow-amber-500/25">
-              PF
+            <div className="w-8 h-8 shrink-0 rounded-xl bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 flex items-center justify-center font-black text-slate-950 text-xs shadow-md shadow-amber-500/25 overflow-hidden">
+              {league?.logoUrl
+                ? <img src={league.logoUrl} alt={league.nameAr} className="w-full h-full object-cover" />
+                : 'PF'}
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
@@ -67,6 +71,15 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700 shrink-0 hidden xs:inline">
                   IAAF
                 </span>
+                {league && (
+                  <span
+                    className="text-[9px] bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 shrink-0 max-w-[110px] sm:max-w-[160px] truncate font-black"
+                    style={{ color: 'var(--pf-primary)' }}
+                    title={league.nameAr}
+                  >
+                    {league.nameAr}
+                  </span>
+                )}
               </div>
               {role && (
                 <div className="text-[10px] sm:text-[11px] font-bold text-slate-400 flex items-center gap-1.5 truncate">

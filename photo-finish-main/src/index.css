@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* ═══ رموز التصميم لهوية الرابطة (League Branding Design Tokens) ═══
+   الافتراضيات = هوية Photo Finish Pro؛ خدمة leagueTheme.ts تعيد ضبطها
+   ديناميكياً حسب هوية الرابطة النشطة (leagues.colors من Supabase). */
+:root {
+  --pf-primary: #f59e0b;
+  --pf-accent: #06b6d4;
+  --pf-bg: #020617;
+  --pf-primary-soft: rgba(245, 158, 11, 0.35);
+  --pf-accent-soft: rgba(6, 182, 212, 0.35);
+  --pf-league-logo: none;
+}
+
 @layer base {
   html {
     /* منع أي تمرير/تجاوز أفقي على مستوى الصفحة كاملة (clip لا يكسر position: sticky) */
@@ -41,11 +53,13 @@
   background: #334155;
 }
 
-/* تأثير التوهج للعلامات */
-.glow-gold {
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+/* تأثير التوهج للعلامات — يتبع هوية الرابطة النشطة تلقائياً */
+.glow-gold,
+.glow-primary {
+  box-shadow: 0 0 25px var(--pf-primary-soft);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+.glow-cyan,
+.glow-accent {
+  box-shadow: 0 0 25px var(--pf-accent-soft);
 }
