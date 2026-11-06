@@ -1,15 +1,17 @@
 /**
  * Photo Finish Pro — مُقرّر شاشة الدخول (Entry Resolver)
  * =====================================================
- * المرحلة 3: جسر بين الموقع العمومي الجديد (#/) ووضع المنافسة الموجود
- * (?role=&room=) ولوحة الإدارة (?admin). قرار نقّي قابل للاختبار.
+ * المرحلة 3+4: جسر بين الموقع العمومي الجديد (#/) ووضع المنافسة الموجود
+ * (?role=&room=) ولوحة الإدارة (?admin) ولوحة مدير الرابطة (#/manage).
+ * قرار نقّي قابل للاختبار.
  *
  * أولويات الحسم (الأقدم يغلب):
  * 1. ‎?admin‎                → بوابة إدارة المنصة (سلوك قديم محفوظ حرفياً)
  * 2. ‎?role= أو ‎?room=      → وضع المنافسة مباشرة (أكواد QR للهواتف — محفوظة حرفياً)
  * 3. ‎#/league/:id‎          → صفحة رابطة في الموقع العمومي
  * 4. ‎#/compete‎             → وضع المنافسة (مدخل صريح من الموقع العمومي)
- * 5. ما عدى (بما فيه الفراغ) → الموقع العمومي (الواجهة الأمامية للمنصة)
+ * 5. ‎#/manage‎              → لوحة مدير الرابطة (Supabase Auth + MFA)
+ * 6. ما عدى (بما فيه الفراغ) → الموقع العمومي (الواجهة الأمامية للمنصة)
  *
  * ملاحظة: hash وsearch مستقلان في المتصفح، لذا يتعايش المسار ‎#/league/x‎
  * مع ‎?league=x‎ (قناة الهوية) دون تعارض.
@@ -17,7 +19,7 @@
 
 import { matchRoute, normalizePath, ROUTES } from './router';
 
-export type EntryScreen = 'admin' | 'compete' | 'public-home' | 'league';
+export type EntryScreen = 'admin' | 'compete' | 'public-home' | 'league' | 'manage';
 
 export interface EntryResolution {
   screen: EntryScreen;
@@ -62,6 +64,11 @@ export function resolveEntry(rawHash: string, rawSearch: string): EntryResolutio
     return { screen: 'compete', leagueId: null };
   }
 
-  // 5) الافتراضي: الموقع العمومي (يشمل ‎#/‎ والفراغ وأي مسار غير معروف)
+  // 5) لوحة مدير الرابطة
+  if (path === normalizePath(ROUTES.MANAGE)) {
+    return { screen: 'manage', leagueId: null };
+  }
+
+  // 6) الافتراضي: الموقع العمومي (يشمل ‎#/‎ والفراغ وأي مسار غير معروف)
   return { screen: 'public-home', leagueId: null };
 }

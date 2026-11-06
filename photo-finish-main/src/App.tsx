@@ -37,6 +37,7 @@ import { dispatchNetworkMessage } from './services/messageHandlers/messageDispat
 import { router } from './services/router';
 import { resolveEntry, type EntryResolution } from './services/entryResolver';
 import { PublicSite } from './components/public/PublicSite';
+import { LeagueManagerPortal } from './components/manage/LeagueManagerPortal';
 
 const DEFAULT_RUNNERS: Runner[] = [
   { id: 1, bib: 101, name: 'يوسف العبدلي', country: 'الجزائر 🇩🇿', lane: 1, color: '#EF4444', finishTime: 0, status: 'OK' },
@@ -1312,6 +1313,8 @@ const AppRoot: React.FC = () => {
       return <AdminGate />;
     case 'compete':
       return <App />;
+    case 'manage':
+      return <LeagueManagerPortal />;
     default:
       // public-home و league (الصفحة الداخلية تحسم مسارها من الموجّه مباشرة)
       return <PublicSite />;

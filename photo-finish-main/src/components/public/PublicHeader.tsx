@@ -75,6 +75,14 @@ export const PublicHeader: React.FC = () => {
           >
             🏁 {t('site_cta_compete')}
           </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="hidden sm:inline-flex"
+            onClick={() => router.navigate(ROUTES.MANAGE)}
+          >
+            🏛️ {t('saas_league_portal')}
+          </Button>
           <a
             href="?admin"
             title={t('saas_admin_suite')}

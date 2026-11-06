@@ -39,12 +39,13 @@ export const windowLocation: RouterLocation = {
 
 // ═══ أدوات مسار نقية (قابلة للاختبار مباشرة) ═══
 
-/** تطبيع مسار: يزيل # الزائد والمسافات والمائل النهائي — '' يصبح '/' */
+/** تطبيع مسار: يزيل # الزائد والمسافات والمائل النهائي ويطوي المائل المتكرر — '' يصبح '/' */
 export function normalizePath(raw: string): string {
   let p = (raw ?? '').trim();
   if (p.startsWith('#')) p = p.slice(1);
   if (!p.startsWith('/')) p = `/${p}`;
   if (p.length > 1) p = p.replace(/\/+$/, '');
+  p = p.replace(/\/{2,}/g, '/'); // ‎#//manage‎ → ‎#/manage‎ (مدخلات مشوهة من الروابط)
   return p === '' ? '/' : p;
 }
 
@@ -86,6 +87,8 @@ export const ROUTES = {
   COMPETE: '/compete',
   /** إدارة المنصة (AdminGate) */
   ADMIN: '/admin',
+  /** لوحة مدير الرابطة (دخول Supabase Auth + MFA) */
+  MANAGE: '/manage',
 } as const;
 
 // ═══ الموجّه القابل للاشتراك ═══
