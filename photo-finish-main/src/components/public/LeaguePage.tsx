@@ -32,6 +32,8 @@ import {
   type PublicResultRow,
   type ResultStatus,
 } from '../../services/resultsCloudService';
+import { liveBadge } from '../../services/realtimeService';
+import { useLiveSignals } from '../../hooks/useLiveSignals';
 import { useI18n } from '../../i18n';
 import type { DictKey } from '../../i18n/dictionaries';
 
@@ -96,6 +98,23 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
   }, [leagueId]);
 
   useEffect(() => { void load(); }, [load]);
+
+  // ═══ الإشارات اللحظية (المرحلة 7) ═══
+  // إشارة من قاعدة البيانات → إعادة جلب مُجمّعة عبر قراءات RLS/Views القائمة.
+  // الموقع العمومي مهتم بالتظاهرات والنتائج حصراً (التسجيلات/الأندية لا تعنيه).
+  const refreshComps = useCallback(async () => {
+    setCompsState(await fetchPublicCompetitions(leagueId));
+  }, [leagueId]);
+
+  const refreshResults = useCallback(async () => {
+    setResultsState(await fetchLeaguePublishedResults(leagueId));
+  }, [leagueId]);
+
+  const live = useLiveSignals(leagueId, {
+    comps_changed: () => void refreshComps(),
+    results_changed: () => void refreshResults(),
+  });
+  const liveInfo = liveBadge(live);
 
   // هوية الرابطة تُطبَّق فور فتح صفحتها (تُحفظ محلياً أيضاً للدخول لاحقاً لوضع المنافسة)
   useEffect(() => {
@@ -221,6 +240,11 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
                   <Badge tone="primary">📍 {leagueState.league.wilaya}</Badge>
                   <Badge tone="accent">#{leagueState.league.code}</Badge>
                   {leagueState.fromCache && <Badge tone="warning">📴 {t('site_offline_cached')}</Badge>}
+                  {liveInfo && (
+                    <Badge tone={liveInfo.tone} pulse={liveInfo.pulse} title={t(liveInfo.labelKey)}>
+                      {t(liveInfo.labelKey)}
+                    </Badge>
+                  )}
                 </div>
               </div>
             </div>
@@ -290,6 +314,9 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
                 <div className="flex items-center gap-2 mb-4 flex-wrap">
                   <h3 className="text-base sm:text-lg font-black">🏆 {t('site_results_title')}</h3>
                   <Badge tone="primary">{groupedResults.length}</Badge>
+                  {liveInfo && liveInfo.tone === 'success' && (
+                    <Badge tone={liveInfo.tone} pulse={liveInfo.pulse}>{t(liveInfo.labelKey)}</Badge>
+                  )}
                   {resultsState.fromCache && <Badge tone="warning">📴 {t('site_offline_cached')}</Badge>}
                 </div>
                 <div className="space-y-5">

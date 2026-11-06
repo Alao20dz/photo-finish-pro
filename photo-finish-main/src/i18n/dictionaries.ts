@@ -333,6 +333,12 @@ export const ar = {
   res_source_manual: 'إدخال يدوي',
   site_results_title: 'النتائج الرسمية',
   site_results_empty: 'لا نتائج منشورة بعد لهذه الرابطة.',
+
+  // المرحلة 7: الإشارات اللحظية (Realtime)
+  rt_live: 'مباشر',
+  rt_connecting: 'جارٍ الاتصال…',
+  rt_retrying: 'إعادة الاتصال…',
+  rt_polling: 'تحديث دوري',
 } as const;
 
 export type DictKey = keyof typeof ar;
@@ -656,6 +662,12 @@ export const fr: Record<DictKey, string> = {
   res_source_manual: 'Saisie manuelle',
   site_results_title: 'Résultats officiels',
   site_results_empty: 'Aucun résultat publié pour cette ligue pour le moment.',
+
+  // Phase 7 : signaux temps réel (Realtime)
+  rt_live: 'En direct',
+  rt_connecting: 'Connexion…',
+  rt_retrying: 'Reconnexion…',
+  rt_polling: 'Mise à jour périodique',
 };
 
 export const dictionaries: Record<Lang, Record<DictKey, string>> = { ar, fr };

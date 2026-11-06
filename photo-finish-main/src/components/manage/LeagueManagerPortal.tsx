@@ -28,6 +28,8 @@ import {
   type EnsureAal2Outcome,
   type MyMembership,
 } from '../../services/authService';
+import { useLiveSignals } from '../../hooks/useLiveSignals';
+import { liveBadge } from '../../services/realtimeService';
 import {
   allowedStatusTransitions,
   createClub,
@@ -311,6 +313,10 @@ const ClubsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, flash }) =>
 
   useEffect(() => { setClubs(null); void load(); }, [load]);
 
+  // الإشارات اللحظية: تغيّر أندية الرابطة (اعتماد من مدير آخر مثلاً) → تحديث فوري
+  const live = useLiveSignals(leagueId, { clubs_changed: () => void load() });
+  const liveInfo = liveBadge(live);
+
   const submitAdd = async () => {
     setBusy(true);
     setFormErr(null);
@@ -333,7 +339,14 @@ const ClubsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, flash }) =>
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs text-slate-500">{writable ? t('mfa_required_note') : t('manage_readonly_warn')}</p>
+        <div className="flex items-center gap-2 min-w-0 flex-wrap">
+          <p className="text-xs text-slate-500">{writable ? t('mfa_required_note') : t('manage_readonly_warn')}</p>
+          {liveInfo && (
+            <Badge tone={liveInfo.tone} pulse={liveInfo.pulse} title={t(liveInfo.labelKey)}>
+              {t(liveInfo.labelKey)}
+            </Badge>
+          )}
+        </div>
         {writable && (
           <Button variant="primary" size="sm" onClick={() => { setShowAdd((v) => !v); setFormErr(null); }}>
             ➕ {t('club_add')}
@@ -420,6 +433,10 @@ const CompetitionsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, flas
 
   useEffect(() => { setComps(null); void load(); }, [load]);
 
+  // الإشارات اللحظية: انتقالات حالة التظاهرات (من مدير آخر أو نشر النتائج) → تحديث فوري
+  const live = useLiveSignals(leagueId, { comps_changed: () => void load() });
+  const liveInfo = liveBadge(live);
+
   const submitAdd = async () => {
     setBusy(true);
     setFormErr(null);
@@ -444,7 +461,14 @@ const CompetitionsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, flas
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs text-slate-500">{writable ? t('mfa_required_note') : t('manage_readonly_warn')}</p>
+        <div className="flex items-center gap-2 min-w-0 flex-wrap">
+          <p className="text-xs text-slate-500">{writable ? t('mfa_required_note') : t('manage_readonly_warn')}</p>
+          {liveInfo && (
+            <Badge tone={liveInfo.tone} pulse={liveInfo.pulse} title={t(liveInfo.labelKey)}>
+              {t(liveInfo.labelKey)}
+            </Badge>
+          )}
+        </div>
         {writable && (
           <Button variant="primary" size="sm" onClick={() => { setShowAdd((v) => !v); setFormErr(null); }}>
             ➕ {t('comp_add')}
@@ -569,15 +593,15 @@ const RegistrationsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, fla
   const [noteFor, setNoteFor] = useState<{ reg: RegistrationRow; decision: RegistrationDecision } | null>(null);
   const [note, setNote] = useState('');
 
-  useEffect(() => {
-    void (async () => {
-      const res = await listCompetitions(leagueId);
-      if (res.ok) {
-        setComps(res.data ?? []);
-        if (res.data && res.data.length > 0) setCompId((cur) => cur || res.data![0].id);
-      }
-    })();
+  const loadComps = useCallback(async () => {
+    const res = await listCompetitions(leagueId);
+    if (res.ok) {
+      setComps(res.data ?? []);
+      if (res.data && res.data.length > 0) setCompId((cur) => cur || res.data![0].id);
+    }
   }, [leagueId]);
+
+  useEffect(() => { void loadComps(); }, [loadComps]);
 
   const load = useCallback(async () => {
     if (!compId) { setRegs([]); return; }
@@ -589,6 +613,14 @@ const RegistrationsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, fla
   }, [compId, filter]);
 
   useEffect(() => { void load(); }, [load]);
+
+  // الإشارات اللحظية: تسجيلات جديدة/قرارات مدير آخر → تحديث فوري لقائمة الانتظار،
+  // وتغيّر التظاهرات → تحديث قائمة المختار
+  const live = useLiveSignals(leagueId, {
+    regs_changed: () => void load(),
+    comps_changed: () => void loadComps(),
+  });
+  const liveInfo = liveBadge(live);
 
   const decide = (reg: RegistrationRow, decision: RegistrationDecision, reviewNote?: string) => {
     if (!isDecisionAllowed(reg.status, decision)) return;
@@ -636,6 +668,11 @@ const RegistrationsTab: React.FC<TabProps> = ({ leagueId, writable, withMfa, fla
               <option value="rejected">{t('reg_status_rejected')}</option>
               <option value="draft">{t('reg_status_draft')}</option>
             </select>
+            {liveInfo && (
+              <Badge tone={liveInfo.tone} pulse={liveInfo.pulse} title={t(liveInfo.labelKey)} className="ms-auto">
+                {t(liveInfo.labelKey)}
+              </Badge>
+            )}
           </>
         )}
       </div>
