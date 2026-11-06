@@ -25,7 +25,7 @@ const COURSES_STORAGE_KEY = 'pf_athletics_courses_v1';
 const QR_PACKS_STORAGE_KEY = 'pf_athletics_qr_packs_v1';
 
 // ═══ توقيع رموز نقاط المراقبة (Server-Signed Ed25519) ═══
-// NOTE أمني: لا يوجد أي سر في الواجهة — الملح الثابت القديم (VITE_QR_TOKEN_SALT)
+// NOTE أمني: لا يوجد أي سر في الواجهة — الملح الثابت القديم لأكواد QR (متغير بيئة أُزيل نهائياً)
 // أُزيل نهائياً لأنه كان ظاهراً في حزمة البناء ويمكن لأي جهاز تزوير الرموز به.
 // الإصدار: الخادم يوقّع النص القياسي PFP_CP1|cid|cpid|code|km|iat|exp بـ Ed25519،
 // والعميل يتحقق أوفلاين بالمفتاح العام فقط عبر securityService.verifyEd25519Signature.

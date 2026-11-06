@@ -106,7 +106,10 @@ function cleanExpiredAttempts() {
 }
 
 // تنظيف دوري للذاكرة
-setInterval(cleanExpiredAttempts, 5 * 60 * 1000);
+// NOTE: unref() حتى لا يمنع هذا المؤقت عملية vite build (التي تستورد هذا الملف
+// عبر vite.config.ts) من الإنهاء بعد اكتمال إخراج dist/.
+const _attemptsCleanupTimer = setInterval(cleanExpiredAttempts, 5 * 60 * 1000);
+if (typeof _attemptsCleanupTimer.unref === 'function') _attemptsCleanupTimer.unref();
 
 /**
  * التحقق من كلمة مرور المدير مع تحديد المعدل وحماية التوقيت

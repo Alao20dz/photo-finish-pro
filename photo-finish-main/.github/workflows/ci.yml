@@ -32,7 +32,7 @@ jobs:
 
       - name: Security sweep — no compromised secrets in bundle
         run: |
-          ! grep -rqE "PFP-ADMIN-2026|PFP-SecureAdmin-2026|PFP-SECUREADMIN-2026|PFP_ATHLETICS_OFFLINE_SECRET" dist/ src/ server/ relay-server/ index.html \
+          ! grep -rqE "PFP-ADMIN-2026|PFP-SecureAdmin-2026|PFP-SECUREADMIN-2026|PFP_ATHLETICS_OFFLINE_SECRET|ALADINE-VIP-2026|AQUACORE-ADMIN-KEY|PRO-ATHLETICS-2026|COACH-CLUB-PRO|HMAC_SECRET_SALT|VITE_QR_TOKEN_SALT|sb_secret_|SUPABASE_SERVICE_ROLE_KEY" dist/ src/ server/ relay-server/ index.html \
             || { echo "❌ Compromised secret found in the shipped bundle"; exit 1; }
           echo "✅ Secret sweep clean: no backdoor codes in dist/src/server"
 

@@ -99,8 +99,9 @@ function cleanExpiredAttempts() {
   }
 }
 
-// تنظيف دوري للذاكرة
-setInterval(cleanExpiredAttempts, 5 * 60 * 1000);
+// تنظيف دوري للذاكرة (unref: خادم الترحيل يبقى حياً بفضل http server، والمؤقت لا يحتجز أي عملية)
+const _attemptsCleanupTimer = setInterval(cleanExpiredAttempts, 5 * 60 * 1000);
+if (typeof _attemptsCleanupTimer.unref === 'function') _attemptsCleanupTimer.unref();
 
 /**
  * التحقق من كلمة مرور المدير مع تحديد المعدل وحماية التوقيت
