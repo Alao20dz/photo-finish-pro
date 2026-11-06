@@ -36,6 +36,7 @@ import { auditService } from './services/securityService';
 import { dispatchNetworkMessage } from './services/messageHandlers/messageDispatcher';
 import { router } from './services/router';
 import { resolveEntry, type EntryResolution } from './services/entryResolver';
+import { applyRobots } from './services/seoService';
 import { PublicSite } from './components/public/PublicSite';
 import { LeagueManagerPortal } from './components/manage/LeagueManagerPortal';
 import { CoachPortal } from './components/coach/CoachPortal';
@@ -1307,6 +1308,12 @@ const AppRoot: React.FC = () => {
       const leagueId = new URLSearchParams(window.location.search).get('league');
       if (leagueId) void loadAndApplyLeagueTheme(leagueId);
     } catch { /* بيئة بلا نافذة */ }
+  }, [entry]);
+
+  // ═══ robots حسب الشاشة (المرحلة 8): العمومي مفهرس، اللوحات/الهواتف محجوبة ═══
+  useEffect(() => {
+    const indexed = entry.screen === 'public-home' || entry.screen === 'league';
+    applyRobots(indexed ? 'index,follow' : 'noindex');
   }, [entry]);
 
   switch (entry.screen) {

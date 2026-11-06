@@ -17,6 +17,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Badge, Button, Card, CardBody, CardHeader, Input, Modal } from '../ui';
 import { SignInForm } from '../auth/SignInForm';
 import { MfaGateModal, type MfaGateRequest } from './MfaGateModal';
+import { AnalyticsTab } from './AnalyticsTab';
 import { PublicHeader } from '../public/PublicHeader';
 import {
   canWriteLeague,
@@ -55,7 +56,7 @@ import { formatDmy } from '../../services/publicApi';
 import { useI18n } from '../../i18n';
 import type { DictKey } from '../../i18n/dictionaries';
 
-type Tab = 'clubs' | 'competitions' | 'registrations';
+type Tab = 'clubs' | 'competitions' | 'registrations' | 'analytics';
 
 const ROLE_KEY: Record<MyMembership['role'], DictKey> = {
   executive_manager: 'role_executive_manager',
@@ -215,6 +216,7 @@ export const LeagueManagerPortal: React.FC = () => {
             ['clubs', `🏟️ ${t('tab_clubs')}`],
             ['competitions', `🏁 ${t('tab_competitions')}`],
             ['registrations', `📋 ${t('tab_registrations')}`],
+            ['analytics', `📈 ${t('tab_analytics')}`],
           ] as [Tab, string][]).map(([id, label]) => (
             <button
               key={id}
@@ -239,6 +241,9 @@ export const LeagueManagerPortal: React.FC = () => {
         )}
         {selected && tab === 'registrations' && (
           <RegistrationsTab leagueId={selected.leagueId} writable={writable} withMfa={withMfa} flash={flash} />
+        )}
+        {selected && tab === 'analytics' && (
+          <AnalyticsTab leagueId={selected.leagueId} />
         )}
       </div>
     );

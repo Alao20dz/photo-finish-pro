@@ -339,6 +339,24 @@ export const ar = {
   rt_connecting: 'جارٍ الاتصال…',
   rt_retrying: 'إعادة الاتصال…',
   rt_polling: 'تحديث دوري',
+
+  // المرحلة 8: تحسين الظهور (SEO) والتحليلات الخصوصية
+  seo_league_desc: 'برنامج التظاهرات الرسمية للرابطة — الحالة اللحظية والنتائج المعتمدة.',
+  tab_analytics: 'التحليلات',
+  an_privacy_note: 'إحصاءات بلا كوكيز ولا تتبّع شخصي',
+  an_total_views: 'إجمالي الزيارات',
+  an_cta_clicks: 'نقرات «دخول وضع المنافسة»',
+  an_active_days: 'أيام نشاط',
+  an_daily_views: 'الزيارات اليومية',
+  an_top_pages: 'أكثر الصفحات زيارة',
+  an_no_data: 'لا زيارات مسجّلة بعد',
+  an_no_data_hint: 'تظهر الإحصاءات بعد فتح الزوار للموقع العمومي.',
+  an_error_load: 'تعذّر تحميل الإحصاءات من السحابة',
+  an_period: 'الفترة',
+  an_days_7: '7 أيام',
+  an_days_30: '30 يوماً',
+  an_page_league: 'صفحة رابطة',
+  an_retry: 'إعادة المحاولة',
 } as const;
 
 export type DictKey = keyof typeof ar;
@@ -668,6 +686,24 @@ export const fr: Record<DictKey, string> = {
   rt_connecting: 'Connexion…',
   rt_retrying: 'Reconnexion…',
   rt_polling: 'Mise à jour périodique',
+
+  // Phase 8 : SEO & statistiques privées
+  seo_league_desc: 'Le programme officiel des compétitions de la ligue — statut en direct et résultats certifiés.',
+  tab_analytics: 'Statistiques',
+  an_privacy_note: 'Statistiques sans cookies ni suivi personnel',
+  an_total_views: 'Total des visites',
+  an_cta_clicks: 'Clics « Entrer en mode compétition »',
+  an_active_days: 'Jours actifs',
+  an_daily_views: 'Visites par jour',
+  an_top_pages: 'Pages les plus visitées',
+  an_no_data: 'Aucune visite enregistrée pour le moment',
+  an_no_data_hint: 'Les statistiques apparaîtront dès que les visiteurs ouvriront le site public.',
+  an_error_load: 'Impossible de charger les statistiques depuis le cloud',
+  an_period: 'Période',
+  an_days_7: '7 jours',
+  an_days_30: '30 jours',
+  an_page_league: 'Page d\'une ligue',
+  an_retry: 'Réessayer',
 };
 
 export const dictionaries: Record<Lang, Record<DictKey, string>> = { ar, fr };

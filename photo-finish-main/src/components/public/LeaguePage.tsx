@@ -25,6 +25,7 @@ import {
   type PublicLeagueRow,
 } from '../../services/publicApi';
 import { loadAndApplyLeagueTheme, sanitizeLogoUrl } from '../../services/leagueTheme';
+import { applyMeta, buildLeagueMeta } from '../../services/seoService';
 import {
   fetchLeaguePublishedResults,
   groupResultsByCompetition,
@@ -120,6 +121,13 @@ export const LeaguePage: React.FC<{ leagueId: string }> = ({ leagueId }) => {
   useEffect(() => {
     void loadAndApplyLeagueTheme(leagueId);
   }, [leagueId]);
+
+  // meta صفحة الرابطة (المرحلة 8): عنوان باسم الرابطة + SportsEvent للقادمة/الجارية
+  useEffect(() => {
+    if (leagueState.league) {
+      applyMeta(buildLeagueMeta(leagueState.league, compsState?.rows ?? [], lang));
+    }
+  }, [leagueState.league, compsState, lang]);
 
   const grouped = useMemo(
     () => groupCompetitionsByStatus(compsState?.rows ?? [], todayIso()),

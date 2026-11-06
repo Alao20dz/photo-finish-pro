@@ -62,6 +62,7 @@ def main():
         ('اختبارات الزائر المجهول', f'{BASE}/supabase/tests/rls_anon_test.sql'),
         ('اختبارات النتائج الرسمية (المرحلة 6)', f'{BASE}/supabase/tests/results_cloud_test.sql'),
         ('اختبارات الإشارات اللحظية (المرحلة 7)', f'{BASE}/supabase/tests/realtime_cloud_test.sql'),
+        ('اختبارات التحليلات الخصوصية (المرحلة 8)', f'{BASE}/supabase/tests/analytics_cloud_test.sql'),
     ]
 
     for label, path in suites:

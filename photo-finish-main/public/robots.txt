@@ -1,0 +1,12 @@
+# Photo Finish Pro — robots
+# الموقع العمومي (دليل الرابطات وصفحاتها) مفهرس.
+# الشاشات الأخرى (وضع المنافسة للهواتف، لوحات الإدارة والأعضاء)
+# تُحجب ديناميكياً وقت التشغيل عبر meta robots noindex (seoService).
+
+User-agent: *
+Allow: /
+Disallow: /field/
+
+# خريطة الموقع تُولَّد عند البناء فقط عندما يُضبط VITE_SITE_URL.
+# فعّل السطر التالي بعد تحديد النطاق:
+# Sitemap: https://YOUR-DOMAIN/sitemap.xml

@@ -20,6 +20,8 @@ import {
   type PublicLeagueRow,
 } from '../../services/publicApi';
 import { resetLeagueTheme } from '../../services/leagueTheme';
+import { buildHomeMeta, applyMeta } from '../../services/seoService';
+import { track } from '../../services/analyticsService';
 import { useI18n } from '../../i18n';
 
 interface HomeState {
@@ -51,6 +53,11 @@ export const PublicHome: React.FC = () => {
   const fromCache = state.result?.fromCache ?? false;
   const error = state.result?.error ?? null;
   const updatedAt = lastCacheAt('leagues');
+
+  // meta الرئيسية (المرحلة 8): عنوان/وصف/OG/JSON-LD — تتحدث مع العدد واللغة
+  useEffect(() => {
+    applyMeta(buildHomeMeta(leagues.length, lang));
+  }, [leagues.length, lang]);
 
   const scrollToLeagues = () => {
     document.getElementById('leagues-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -89,7 +96,10 @@ export const PublicHome: React.FC = () => {
             <Button variant="primary" size="lg" onClick={scrollToLeagues}>
               🏟️ {t('site_cta_explore')}
             </Button>
-            <Button variant="outline" size="lg" onClick={() => router.navigate(ROUTES.COMPETE)}>
+            <Button variant="outline" size="lg" onClick={() => {
+              track({ kind: 'cta_click', path: '/', leagueId: null, lang });
+              router.navigate(ROUTES.COMPETE);
+            }}>
               🏁 {t('site_cta_compete')}
             </Button>
           </div>
